@@ -420,23 +420,46 @@ void Application::ProcessKeyboard(void)
 	if (bMultiplier)
 		fMultiplier = 5.0f;
 
+	float fDelta = m_pSystem->GetDeltaTime(0);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
+	{
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(0.0f, 0.0f, 1.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+	}
+		//m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		m_pCameraMngr->MoveForward(-m_fMovementSpeed * fMultiplier);
+	{
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(0.0f, 0.0f, -1.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+	}
+		//m_pCameraMngr->MoveForward(-m_fMovementSpeed * fMultiplier);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		m_pCameraMngr->MoveSideways(-m_fMovementSpeed * fMultiplier);
+	{
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(1.0f, 0.0f, 0.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+	}
+		//m_pCameraMngr->MoveSideways(-m_fMovementSpeed * fMultiplier);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		m_pCameraMngr->MoveSideways(m_fMovementSpeed * fMultiplier);
+	{
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(-1.0f, 0.0f, 0.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+	}
+		//m_pCameraMngr->MoveSideways(m_fMovementSpeed * fMultiplier);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		m_pCameraMngr->MoveVertical(-m_fMovementSpeed * fMultiplier);
+	{
+
+	}
+		//m_pCameraMngr->MoveVertical(-m_fMovementSpeed * fMultiplier);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		m_pCameraMngr->MoveVertical(m_fMovementSpeed * fMultiplier);
+	{
+
+	}
+		//m_pCameraMngr->MoveVertical(m_fMovementSpeed * fMultiplier);
 #pragma endregion
 }
 //Joystick

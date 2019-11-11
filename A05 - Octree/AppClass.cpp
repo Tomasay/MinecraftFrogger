@@ -6,31 +6,38 @@ void Application::InitVariables(void)
 {
 	//Set the position and target of the camera
 	m_pCameraMngr->SetPositionTargetAndUpward(
-		vector3(0.0f, 0.0f, 100.0f), //Position
-		vector3(0.0f, 0.0f, 99.0f),	//Target
+		vector3(0.0f, 20.0f, 20.0f), //Position
+		vector3(0.0f, 0.0f, 0.0f),	//Target
 		AXIS_Y);					//Up
 
 	m_pLightMngr->SetPosition(vector3(0.0f, 3.0f, 13.0f), 1); //set the position of first light (0 is reserved for ambient light)
 
-#ifdef DEBUG
-	uint uInstances = 900;
-#else
-	uint uInstances = 1849;
-#endif
-	int nSquare = static_cast<int>(std::sqrt(uInstances));
-	m_uObjects = nSquare * nSquare;
-	uint uIndex = -1;
-	for (int i = 0; i < nSquare; i++)
-	{
-		for (int j = 0; j < nSquare; j++)
-		{
-			uIndex++;
-			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj");
-			vector3 v3Position = vector3(glm::sphericalRand(34.0f));
-			matrix4 m4Position = glm::translate(v3Position);
-			m_pEntityMngr->SetModelMatrix(m4Position);
-		}
-	}
+//#ifdef DEBUG
+//	uint uInstances = 900;
+//#else
+//	uint uInstances = 1849;
+//#endif
+//	int nSquare = static_cast<int>(std::sqrt(uInstances));
+//	m_uObjects = nSquare * nSquare;
+//	uint uIndex = -1;
+//	for (int i = 0; i < nSquare; i++)
+//	{
+//		for (int j = 0; j < nSquare; j++)
+//		{
+//			uIndex++;
+//			m_pEntityMngr->AddEntity("Minecraft\\Cube.obj");
+//			vector3 v3Position = vector3(glm::sphericalRand(34.0f));
+//			matrix4 m4Position = glm::translate(v3Position);
+//			m_pEntityMngr->SetModelMatrix(m4Position);
+//		}
+//	}
+	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
+	vector3 v3Position = vector3();
+	matrix4 m4Position = glm::translate(v3Position);
+	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	m_pEntityMngr->SetModelMatrix(m4Position);
+
+
 	m_uOctantLevels = 1;
 	m_pEntityMngr->Update();
 	m_pRoot = new MyOctant(m_uOctantLevels, 5);
@@ -44,7 +51,7 @@ void Application::Update(void)
 	ArcBall();
 
 	//Is the first person camera active?
-	CameraRotation();
+	//CameraRotation();
 	
 	//Update Entity Manager
 	m_pEntityMngr->Update();
