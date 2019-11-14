@@ -84,9 +84,18 @@ void Application::Update(void)
 		matrix4 model = m_pEntityMngr->GetModelMatrix("Creeper" + std::to_string(i)) * glm::translate(vector3(0.0f, 0.0f, creeperSpeed));
 		m_pEntityMngr->SetModelMatrix(model, "Creeper" + std::to_string(i));
 	}
-	
+
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
+
+	//Rebuild octree
+	fDelta = m_pSystem->GetDeltaTime(0);
+	if (fDelta%2 == 0)
+	{
+		m_pEntityMngr->ClearDimensionSetAll();
+		SafeDelete(m_pRoot);
+		m_pRoot = new MyOctant(m_uOctantLevels, 5);
+	}
 
 	//Is the ArcBall active?
 	ArcBall();

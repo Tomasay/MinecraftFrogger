@@ -25,6 +25,8 @@ class Application
 	uint m_uOctantLevels = 0; //Number of levels in the octree
 	MyOctant* m_pRoot = nullptr; //Pointer points to the root node of the octree
 
+	int fDelta = 0;
+
 private:
 	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu"; //programmer
 
