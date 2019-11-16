@@ -10,7 +10,7 @@ void Application::InitVariables(void)
 {
 	//Set the position and target of the camera
 	m_pCameraMngr->SetPositionTargetAndUpward(
-		vector3(0.0f, 20.0f, 20.0f), //Position
+		vector3(0.0f, 25.0f, 25.0f), //Position
 		vector3(0.0f, 0.0f, 0.0f),	//Target
 		AXIS_Y);					//Up
 
@@ -36,10 +36,15 @@ void Application::InitVariables(void)
 //		}
 //	}
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
-	vector3 v3Position = vector3();
+	vector3 v3Position = vector3(0.0f, 0.0f, 10.0f);
 	matrix4 m4Position = glm::translate(v3Position);
 	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	m_pEntityMngr->SetModelMatrix(m4Position);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
+	vector3 v3PositionCube = vector3(-25.0f, -51.0f, -40.0f);
+	matrix4 m4PositionCube = glm::translate(v3PositionCube) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionCube);
 
 	for (size_t i = 0; i < creeperCount; i++)
 	{
@@ -51,13 +56,13 @@ void Application::InitVariables(void)
 		matrix4 m4PositionCreeper;
 		if (i % 2 == 0)
 		{
-			v3PositionCreeper = vector3(10.0f, 0.0f, i * 2);
+			v3PositionCreeper = vector3(10.0f, 0.0f, 5.0f - (i * 6));
 			m4PositionCreeper = glm::translate(v3PositionCreeper);
 			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
 		}
 		else
 		{
-			v3PositionCreeper = vector3(-10.0f, 0.0f, i * 2);
+			v3PositionCreeper = vector3(-10.0f, 0.0f, 5.0f - (i * 6));
 			m4PositionCreeper = glm::translate(v3PositionCreeper);
 			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		}
