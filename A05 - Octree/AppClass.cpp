@@ -47,14 +47,25 @@ void Application::InitVariables(void)
 	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	m_pEntityMngr->SetModelMatrix(m4Position);
 
+	//Creating floor/walls
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
-	vector3 v3PositionCube = vector3(-25.0f, -51.0f, -40.0f);
-	matrix4 m4PositionCube = glm::translate(v3PositionCube) * glm::scale(vector3(50.0f));
-	m_pEntityMngr->SetModelMatrix(m4PositionCube);
+	vector3 v3PositionFloor = vector3(-25.0f, -51.0f, -40.0f);
+	matrix4 m4PositionFloor = glm::translate(v3PositionFloor) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionFloor);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "LeftWall");
+	vector3 v3PositionLeftWall = vector3(-75.0f, -5.0f, -40.0f);
+	matrix4 m4PositionLeftWall = glm::translate(v3PositionLeftWall) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionLeftWall);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "RightWall");
+	vector3 v3PositionRightWall = vector3(25.0f, -5.0f, -40.0f);
+	matrix4 m4PositionRightWall = glm::translate(v3PositionRightWall) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionRightWall);
 
 	//String finishID = "Finish";
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Finish");
-	vector3 finishCoords = vector3(0, 0, -20);
+	vector3 finishCoords = vector3(0.0f, 0.0f, -35.0f);
 	m4Position = glm::translate(finishCoords);
 	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	m_pEntityMngr->SetModelMatrix(m4Position);
@@ -70,13 +81,13 @@ void Application::InitVariables(void)
 		matrix4 m4PositionCreeper;
 		if (i % 2 == 0)
 		{
-			v3PositionCreeper = vector3(10.0f, 0.0f, 5.0f - (i * 6));
+			v3PositionCreeper = vector3(15.0f, 0.0f, 5.0f - (i * 6));
 			m4PositionCreeper = glm::translate(v3PositionCreeper);
 			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
 		}
 		else
 		{
-			v3PositionCreeper = vector3(-10.0f, 0.0f, 5.0f - (i * 6));
+			v3PositionCreeper = vector3(-15.0f, 0.0f, 5.0f - (i * 6));
 			m4PositionCreeper = glm::translate(v3PositionCreeper);
 			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		}
@@ -114,13 +125,13 @@ void Application::Update(void)
 			matrix4 m4PositionCreeper;
 			if (i % 2 == 0)
 			{
-				v3PositionCreeper = vector3(20.0f, 0.0f, 5.0f - (i * 6));
+				v3PositionCreeper = vector3(25.0f, 0.0f, 5.0f - (i * 6));
 				m4PositionCreeper = glm::translate(v3PositionCreeper);
 				m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
 			}
 			else
 			{
-				v3PositionCreeper = vector3(-20.0f, 0.0f, 5.0f - (i * 6));
+				v3PositionCreeper = vector3(-25.0f, 0.0f, 5.0f - (i * 6));
 				m4PositionCreeper = glm::translate(v3PositionCreeper);
 				m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 			}
