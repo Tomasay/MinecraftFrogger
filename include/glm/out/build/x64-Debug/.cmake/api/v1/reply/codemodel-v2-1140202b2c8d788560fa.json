@@ -34,7 +34,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "glm_dummy::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-glm_dummy-Debug-7505bea5369090bacf36.json",
+					"jsonFile" : "target-glm_dummy-Debug-c1707b905a772fe647fc.json",
 					"name" : "glm_dummy",
 					"projectIndex" : 0
 				}
@@ -44,8 +44,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug",
-		"source" : "D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm"
+		"build" : "C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug",
+		"source" : "C:/Users/Annie/source/repos/MinecraftFrogger/include/glm"
 	},
 	"version" : 
 	{

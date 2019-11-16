@@ -178,7 +178,18 @@ void Simplex::MyEntityManager::Update(void)
 	{
 		for (uint j = i + 1; j < m_uEntityCount; j++)
 		{
-			m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
+			bool colliding = m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
+
+			if (m_mEntityArray[i]->GetUniqueID() == "Steve")
+			{
+				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
+				{
+					if (colliding == true)
+					{
+						std::cout << "I AM COLLIDING" << std::endl;
+					}
+				}
+			}
 		}
 	}
 }

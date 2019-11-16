@@ -318,6 +318,8 @@ bool MyRigidBody::IsColliding(MyRigidBody* const a_pOther)
 		{
 			this->AddCollisionWith(a_pOther);
 			a_pOther->AddCollisionWith(this);
+			
+
 		}
 		else //they are not colliding with bounding box
 		{
