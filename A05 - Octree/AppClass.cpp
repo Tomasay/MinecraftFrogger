@@ -2,6 +2,10 @@
 #include "MyOctant.h"
 
 using namespace Simplex;
+
+int creeperCount = 7;
+float creeperSpeed = 0.1f;
+
 void Application::InitVariables(void)
 {
 	//Set the position and target of the camera
@@ -37,15 +41,36 @@ void Application::InitVariables(void)
 	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	m_pEntityMngr->SetModelMatrix(m4Position);
 
-	//String finishID = "Finish";
-	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Finish");
-	vector3 finishCoords = vector3(0,0,-20);
-	m4Position = glm::translate(finishCoords);
-	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	m_pEntityMngr->SetModelMatrix(m4Position);
+	for (size_t i = 0; i < creeperCount; i++)
+	{
+		//Create creeper
+		m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(i)));
 
+		//Assign position and rotation
+		vector3 v3PositionCreeper;
+		matrix4 m4PositionCreeper;
+		if (i % 2 == 0)
+		{
+			v3PositionCreeper = vector3(10.0f, 0.0f, i * 2);
+			m4PositionCreeper = glm::translate(v3PositionCreeper);
+			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+		}
+		else
+		{
+			v3PositionCreeper = vector3(-10.0f, 0.0f, i * 2);
+			m4PositionCreeper = glm::translate(v3PositionCreeper);
+			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		}
+		
+		//Apply position and rotation
+		m_pEntityMngr->SetModelMatrix(m4PositionCreeper);
+	}
 
-
+	/*m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", "Creeper1");
+	vector3 v3PositionCreeper = vector3();
+	matrix4 m4PositionCreeper = glm::translate(v3Position);
+	m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionCreeper);*/
 
 	m_uOctantLevels = 1;
 	m_pEntityMngr->Update();
@@ -53,8 +78,24 @@ void Application::InitVariables(void)
 }
 void Application::Update(void)
 {
+	//Move each creeper forward
+	for (size_t i = 0; i < creeperCount; i++)
+	{
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Creeper" + std::to_string(i)) * glm::translate(vector3(0.0f, 0.0f, creeperSpeed));
+		m_pEntityMngr->SetModelMatrix(model, "Creeper" + std::to_string(i));
+	}
+
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
+
+	//Rebuild octree
+	fDelta = m_pSystem->GetDeltaTime(0);
+	if (fDelta%2 == 0)
+	{
+		m_pEntityMngr->ClearDimensionSetAll();
+		SafeDelete(m_pRoot);
+		m_pRoot = new MyOctant(m_uOctantLevels, 5);
+	}
 
 	//Is the ArcBall active?
 	ArcBall();
