@@ -28,7 +28,7 @@ class Application
 	int fDelta = 0;
 
 private:
-	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu"; //programmer
+	String m_sProgrammer = " Crosby, Grayson \n Ge, Annie \n Ratliff, Thomas \n Saha, Ankita"; //programmer
 
 	static ImGuiObject gui; //GUI object
 	bool m_bGUI_Main = true; //show Main GUI window?
