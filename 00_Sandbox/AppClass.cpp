@@ -15,6 +15,7 @@ void Application::InitVariables(void)
 															 
 	m_pEntityMngr = MyEntityManager::GetInstance(); //Initialize the entity manager
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
+	m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", "Creeper");
 	m_pEntityMngr->UsePhysicsSolver();
 
 	for (int i = 0; i < 100; i++)

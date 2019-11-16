@@ -1,16 +1,16 @@
 The system is: Windows - 10.0.18362 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.21.27702/bin/HostX64/x64/cl.exe 
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/HostX64/x64/cl.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-Microsoft (R) C/C++ Optimizing Compiler Version 19.21.27702.2 for x64
+Microsoft (R) C/C++ Optimizing Compiler Version 19.22.27905 for x64
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 CMakeCCompilerId.c
-Microsoft (R) Incremental Linker Version 14.21.27702.2
+Microsoft (R) Incremental Linker Version 14.22.27905.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 /out:CMakeCCompilerId.exe 
@@ -21,20 +21,20 @@ Compilation of the C compiler identification source "CMakeCCompilerId.c" produce
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
 
-The C compiler identification is MSVC, found in "D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/3.14.19050301-MSVC_2/CompilerIdC/CMakeCCompilerId.exe"
+The C compiler identification is MSVC, found in "C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/3.14.19060802-MSVC_2/CompilerIdC/CMakeCCompilerId.exe"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.21.27702/bin/HostX64/x64/cl.exe 
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/HostX64/x64/cl.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-Microsoft (R) C/C++ Optimizing Compiler Version 19.21.27702.2 for x64
+Microsoft (R) C/C++ Optimizing Compiler Version 19.22.27905 for x64
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 CMakeCXXCompilerId.cpp
-Microsoft (R) Incremental Linker Version 14.21.27702.2
+Microsoft (R) Incremental Linker Version 14.22.27905.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 /out:CMakeCXXCompilerId.exe 
@@ -45,60 +45,60 @@ Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" p
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
 
-The CXX compiler identification is MSVC, found in "D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/3.14.19050301-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe"
+The CXX compiler identification is MSVC, found in "C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/3.14.19060802-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b5d07 
-[1/2] Building C object CMakeFiles\cmTC_b5d07.dir\testCCompiler.c.obj
-[2/2] Linking C executable cmTC_b5d07.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_4a9e2 
+[1/2] Building C object CMakeFiles\cmTC_4a9e2.dir\testCCompiler.c.obj
+[2/2] Linking C executable cmTC_4a9e2.exe
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b53b7 
-[1/2] Building C object CMakeFiles\cmTC_b53b7.dir\CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_b53b7.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_6d9fb 
+[1/2] Building C object CMakeFiles\cmTC_6d9fb.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_6d9fb.exe
 
 
 
 
 Detecting C [] compiler features compiled with the following output:
-Change Dir: D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_2cdce 
-[1/2] Building C object CMakeFiles\cmTC_2cdce.dir\feature_tests.c.obj
-[2/2] Linking C executable cmTC_2cdce.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b2861 
+[1/2] Building C object CMakeFiles\cmTC_b2861.dir\feature_tests.c.obj
+[2/2] Linking C executable cmTC_b2861.exe
 
 
     Feature record: C_FEATURE:1c_function_prototypes
     Feature record: C_FEATURE:1c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b966e 
-[1/2] Building CXX object CMakeFiles\cmTC_b966e.dir\testCXXCompiler.cxx.obj
-[2/2] Linking CXX executable cmTC_b966e.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_45854 
+[1/2] Building CXX object CMakeFiles\cmTC_45854.dir\testCXXCompiler.cxx.obj
+[2/2] Linking CXX executable cmTC_45854.exe
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_69b5d 
-[1/2] Building CXX object CMakeFiles\cmTC_69b5d.dir\CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_69b5d.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_dd549 
+[1/2] Building CXX object CMakeFiles\cmTC_dd549.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_dd549.exe
 
 
 
 
 Detecting CXX [] compiler features compiled with the following output:
-Change Dir: D:/Profiles/ggc2903/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_8d849 
-[1/2] Building CXX object CMakeFiles\cmTC_8d849.dir\feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_8d849.exe
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_97381 
+[1/2] Building CXX object CMakeFiles\cmTC_97381.dir\feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_97381.exe
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers

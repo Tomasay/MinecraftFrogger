@@ -46,6 +46,14 @@ void Application::InitVariables(void)
 	matrix4 m4PositionCube = glm::translate(v3PositionCube) * glm::scale(vector3(50.0f));
 	m_pEntityMngr->SetModelMatrix(m4PositionCube);
 
+	//String finishID = "Finish";
+	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Finish");
+	vector3 finishCoords = vector3(0, 0, -20);
+	m4Position = glm::translate(finishCoords);
+	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	m_pEntityMngr->SetModelMatrix(m4Position);
+
+
 	for (size_t i = 0; i < creeperCount; i++)
 	{
 		//Create creeper
