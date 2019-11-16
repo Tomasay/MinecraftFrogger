@@ -1,4 +1,5 @@
 #include "AppClass.h"
+//#include "../A05 - Octree/MyEntityManager.h"
 using namespace Simplex;
 ImGuiObject Application::gui;
 void Application::DrawGUI(void)
@@ -40,12 +41,13 @@ void Application::DrawGUI(void)
 			ImGui::TextColored(v4Color, m_sProgrammer.c_str());
 			ImGui::Text("FrameRate: %.2f [FPS] -> %.3f [ms/frame]\n",
 				ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
-			//ImGui::Text("Levels in Octree: %d\n", m_uOctantLevels);
-			//ImGui::Text("Octants: %d\n", m_pRoot->GetOctantCount());
+			ImGui::Text("Levels in Octree: %d\n", m_uOctantLevels);
+			ImGui::Text("Octants: %d\n", m_pRoot->GetOctantCount());
 			//ImGui::Text("Objects: %d\n", m_uObjects);
 			ImGui::Separator();
 			ImGui::Text("Control:\n");
 			ImGui::Text("   WASD: Movement\n");
+			//ImGui::Text("   %s\n", m_mEntityArray[0]->GetUniqueID());
 			//ImGui::Text("	 F1: Perspective\n");
 			//ImGui::Text("	 F2: Orthographic X\n");
 			//ImGui::Text("	 F3: Orthographic Y\n");
