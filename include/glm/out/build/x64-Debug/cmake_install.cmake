@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Annie/source/repos/MinecraftFrogger/include/glm
+# Install script for directory: D:/Profiles/twr2404/source/repos/MinecraftFrogger/include/glm
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/Annie/Source/Repos/MinecraftFrogger/include/glm/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "d:/profiles/twr2404/source/repos/minecraftfrogger/include/glm/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Annie/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/Profiles/twr2404/source/repos/MinecraftFrogger/include/glm/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

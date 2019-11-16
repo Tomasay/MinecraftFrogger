@@ -1,10 +1,16 @@
 #include "AppClass.h"
 #include "MyOctant.h"
+#include <time.h>
 
 using namespace Simplex;
 
-int creeperCount = 7;
-float creeperSpeed = 0.1f;
+int laneCount = 7;//Number of lanes of creepers
+int creeperCount = 0; //Total number of creepers spawned
+float creeperSpeed = 0.1f; //How fast the creepers move
+int creeperInterval = 3; //How often to spawn creepers
+
+time_t currentTime;
+int timeSpawned; //Time the creepers were last spawned
 
 void Application::InitVariables(void)
 {
@@ -54,10 +60,10 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4Position);
 
 
-	for (size_t i = 0; i < creeperCount; i++)
+	for (size_t i = 0; i < laneCount; i++)
 	{
 		//Create creeper
-		m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(i)));
+		m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
 
 		//Assign position and rotation
 		vector3 v3PositionCreeper;
@@ -74,11 +80,13 @@ void Application::InitVariables(void)
 			m4PositionCreeper = glm::translate(v3PositionCreeper);
 			m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		}
-		
+
 		//Apply position and rotation
 		m_pEntityMngr->SetModelMatrix(m4PositionCreeper);
+		creeperCount++;
 	}
-
+	timeSpawned = currentTime;
+	
 	/*m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", "Creeper1");
 	vector3 v3PositionCreeper = vector3();
 	matrix4 m4PositionCreeper = glm::translate(v3Position);
@@ -91,6 +99,41 @@ void Application::InitVariables(void)
 }
 void Application::Update(void)
 {
+	currentTime = time(NULL);
+
+
+	if (currentTime >= timeSpawned + creeperInterval)
+	{
+		for (size_t i = 0; i < laneCount; i++)
+		{
+			//Create creeper
+			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
+
+			//Assign position and rotation
+			vector3 v3PositionCreeper;
+			matrix4 m4PositionCreeper;
+			if (i % 2 == 0)
+			{
+				v3PositionCreeper = vector3(20.0f, 0.0f, 5.0f - (i * 6));
+				m4PositionCreeper = glm::translate(v3PositionCreeper);
+				m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+			}
+			else
+			{
+				v3PositionCreeper = vector3(-20.0f, 0.0f, 5.0f - (i * 6));
+				m4PositionCreeper = glm::translate(v3PositionCreeper);
+				m4PositionCreeper = glm::rotate(m4PositionCreeper, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			}
+
+			//Apply position and rotation
+			m_pEntityMngr->SetModelMatrix(m4PositionCreeper);
+			creeperCount++;
+		}
+		timeSpawned = currentTime;
+	}
+
+
+
 	//Move each creeper forward
 	for (size_t i = 0; i < creeperCount; i++)
 	{
