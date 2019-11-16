@@ -179,15 +179,22 @@ void Simplex::MyEntityManager::Update(void)
 		for (uint j = i + 1; j < m_uEntityCount; j++)
 		{
 			bool colliding = m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
-			//std::cout << m_mEntityArray[0]->GetUniqueID() << std::endl;
-			if (m_mEntityArray[i]->GetUniqueID() == "Steve")
+			if (colliding)
 			{
-				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
+				if (m_mEntityArray[i]->GetUniqueID() == "Steve")
 				{
-					if (colliding == true)
+
+					if (m_mEntityArray[j]->GetUniqueID() == "Finish")
 					{
-						std::cout << "I AM COLLIDING" << std::endl;
-						
+						if (colliding == true)
+						{
+							std::cout << "I AM COLLIDING" << std::endl;
+
+						}
+					}
+					if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
+					{
+						std::cout << m_mEntityArray[j]->GetUniqueID() << std::endl;
 					}
 				}
 			}
