@@ -57,9 +57,6 @@
     <ClCompile Include="MySolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\A05 - Octree\MyOctant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -99,9 +96,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MySolver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\A05 - Octree\MyOctant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

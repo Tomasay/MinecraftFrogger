@@ -12,20 +12,12 @@ Date: 2017/06
 
 #include "MyEntityManager.h"
 
-#include "MyOctant.h"
-
 namespace Simplex
 {
 	//Adding Application to the Simplex namespace
 class Application
 {
 	MyEntityManager* m_pEntityMngr = nullptr; //Entity Manager
-	uint m_uOctantID = -1; //Index of Octant to display
-	uint m_uObjects = 0; //Number of objects in the scene
-	uint m_uOctantLevels = 0; //Number of levels in the octree
-	MyOctant* m_pRoot = nullptr; //Pointer points to the root node of the octree
-
-	int fDelta = 0;
 
 private:
 	static ImGuiObject gui; //GUI object
@@ -37,7 +29,7 @@ private:
 	uint m_uRenderCallCount = 0; //count of render calls per frame
 	uint m_uControllerCount = 0; //count of controllers connected
 
-	String m_sProgrammer = " Crosby, Grayson \n Ge, Annie \n Ratliff, Thomas \n Saha, Ankita"; //programmer
+	String m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
 
 	bool m_bFocused = true; //is the window focused?
 
