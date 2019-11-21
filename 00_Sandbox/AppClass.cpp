@@ -1,12 +1,21 @@
 #include "AppClass.h"
 using namespace Simplex;
+
+int laneCount = 6;//Number of lanes of creepers
+int creeperCount = 0; //Total number of creepers spawned
+float creeperSpeed = 0.01f; //How fast the creepers move
+int creeperInterval = 3; //How often to spawn creepers
+
+time_t currentTime;
+int timeSpawned; //Time the creepers were last spawned
+
 void Application::InitVariables(void)
 {
-	m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
+	m_sProgrammer = "TAAG";
 
 	//Set the position and target of the camera
 	m_pCameraMngr->SetPositionTargetAndUpward(
-		vector3(0.0f, 5.0f, 25.0f), //Position
+		vector3(0.0f, 25.0f, 25.0f), //Position
 		vector3(0.0f, 0.0f, 0.0f),	//Target
 		AXIS_Y);					//Up
 
@@ -14,25 +23,81 @@ void Application::InitVariables(void)
 
 															 
 	m_pEntityMngr = MyEntityManager::GetInstance(); //Initialize the entity manager
+
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
-	m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", "Creeper");
+	vector3 v3Position = vector3(0.0f, 0.0f, 10.0f);
+	matrix4 m4Position = glm::translate(v3Position);
+	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	m_pEntityMngr->SetModelMatrix(m4Position, "Steve");
+
+	m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->SetModelMatrix(m4Position);
+
 	m_pEntityMngr->UsePhysicsSolver();
 
-	for (int i = 0; i < 100; i++)
+	for (size_t i = 0; i < laneCount; i++)
 	{
-		m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Cube_" + std::to_string(i));
-		vector3 v3Position = vector3(glm::sphericalRand(12.0f));
-		v3Position.y = 0.0f;
-		matrix4 m4Position = glm::translate(v3Position);
-		m_pEntityMngr->SetModelMatrix(m4Position * glm::scale(vector3(1.5f)));
-		m_pEntityMngr->UsePhysicsSolver(true);
-		m_pEntityMngr->SetMass(1.5);
+		//Create creeper
+		m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
 
-		//m_pEntityMngr->SetMass(i+1);
+		//Assign position
+		vector3 v3PositionCreeper;
+		if (i % 2 == 0)
+		{
+			v3PositionCreeper = vector3(15.0f, 0.0f, 5.0f - (i * 6));
+		}
+		else
+		{
+			v3PositionCreeper = vector3(-15.0f, 0.0f, 5.0f - (i * 6));
+		}
+
+		//Apply position
+		m_pEntityMngr->SetPosition(v3PositionCreeper);
+		m_pEntityMngr->UsePhysicsSolver(true);
+
+		creeperCount++;
 	}
+	timeSpawned = currentTime;
 }
 void Application::Update(void)
 {
+	currentTime = time(NULL);
+
+	if (currentTime >= timeSpawned + creeperInterval)
+	{
+		for (size_t i = 0; i < laneCount; i++)
+		{
+			//Create creeper
+			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
+
+			//Assign position and rotation
+			vector3 v3PositionCreeper;
+			if (i % 2 == 0)
+			{
+				v3PositionCreeper = vector3(25.0f, 0.0f, 5.0f - (i * 6));
+			}
+			else
+			{
+				v3PositionCreeper = vector3(-25.0f, 0.0f, 5.0f - (i * 6));
+			}
+
+			//Apply position
+			m_pEntityMngr->SetPosition(v3PositionCreeper);
+			creeperCount++;
+
+			m_pEntityMngr->UsePhysicsSolver(true);
+		}
+		timeSpawned = currentTime;
+	}
+
+	//Move each creeper forward
+	for (size_t i = 0; i < creeperCount; i++)
+	{
+		if (i % 2 == 0)
+			m_pEntityMngr->ApplyForce(vector3(-creeperSpeed, 0.0f, 0.0f), "Creeper" + std::to_string(i));
+		else
+			m_pEntityMngr->ApplyForce(vector3(creeperSpeed, 0.0f, 0.0f), "Creeper" + std::to_string(i));
+	}
+
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
 
