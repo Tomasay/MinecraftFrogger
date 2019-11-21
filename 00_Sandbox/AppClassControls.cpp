@@ -95,48 +95,48 @@ void Application::ProcessKeyReleased(sf::Event a_event)
 	case sf::Keyboard::Escape:
 		m_bRunning = false;
 		break;
-	case sf::Keyboard::F1:
-		m_pCameraMngr->SetCameraMode(CAM_PERSP);
-		break;
-	case sf::Keyboard::F2:
-		m_pCameraMngr->SetCameraMode(CAM_ORTHO_Z);
-		break;
-	case sf::Keyboard::F3:
-		m_pCameraMngr->SetCameraMode(CAM_ORTHO_Y);
-		break;
-	case sf::Keyboard::F4:
-		m_pCameraMngr->SetCameraMode(CAM_ORTHO_X);
-		break;
-	case sf::Keyboard::F:
-		bFPSControl = !bFPSControl;
-		m_pCameraMngr->SetFPS(bFPSControl);
-		break;
-	case sf::Keyboard::Add:
-		++m_uActCont;
-		m_uActCont %= 8;
-		if (m_uControllerCount > 0)
-		{
-			while (m_pController[m_uActCont]->uModel == SimplexController_NONE)
-			{
-				++m_uActCont;
-				m_uActCont %= 8;
-			}
-		}
-		break;
-	case sf::Keyboard::Subtract:
-		--m_uActCont;
-		if (m_uActCont > 7)
-			m_uActCont = 7;
-		if (m_uControllerCount > 0)
-		{
-			while (m_pController[m_uActCont]->uModel == SimplexController_NONE)
-			{
-				--m_uActCont;
-				if (m_uActCont > 7)
-					m_uActCont = 7;
-			}
-		}
-		break;
+	//case sf::Keyboard::F1:
+	//	m_pCameraMngr->SetCameraMode(CAM_PERSP);
+	//	break;
+	//case sf::Keyboard::F2:
+	//	m_pCameraMngr->SetCameraMode(CAM_ORTHO_Z);
+	//	break;
+	//case sf::Keyboard::F3:
+	//	m_pCameraMngr->SetCameraMode(CAM_ORTHO_Y);
+	//	break;
+	//case sf::Keyboard::F4:
+	//	m_pCameraMngr->SetCameraMode(CAM_ORTHO_X);
+	//	break;
+	//case sf::Keyboard::F:
+	//	bFPSControl = !bFPSControl;
+	//	m_pCameraMngr->SetFPS(bFPSControl);
+	//	break;
+	//case sf::Keyboard::Add:
+	//	++m_uActCont;
+	//	m_uActCont %= 8;
+	//	if (m_uControllerCount > 0)
+	//	{
+	//		while (m_pController[m_uActCont]->uModel == SimplexController_NONE)
+	//		{
+	//			++m_uActCont;
+	//			m_uActCont %= 8;
+	//		}
+	//	}
+	//	break;
+	//case sf::Keyboard::Subtract:
+	//	--m_uActCont;
+	//	if (m_uActCont > 7)
+	//		m_uActCont = 7;
+	//	if (m_uControllerCount > 0)
+	//	{
+	//		while (m_pController[m_uActCont]->uModel == SimplexController_NONE)
+	//		{
+	//			--m_uActCont;
+	//			if (m_uActCont > 7)
+	//				m_uActCont = 7;
+	//		}
+	//	}
+	//	break;
 	case sf::Keyboard::LShift:
 	case sf::Keyboard::RShift:
 		m_bModifier = false;
@@ -410,35 +410,66 @@ void Application::ProcessKeyboard(void)
 	if (bMultiplier)
 		fMultiplier = 5.0f;
 
+	float fDelta = m_pSystem->GetDeltaTime(0);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
+<<<<<<< HEAD
 		m_pEntityMngr->ApplyForce(vector3(0, 0, -0.1f), "Steve");
 		//m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
+=======
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(0.0f, 0.0f, 1.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+>>>>>>> parent of 87ecd71... Merge
 	}
-	
+	//m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
+<<<<<<< HEAD
 		m_pEntityMngr->ApplyForce(vector3(0, 0, 0.1f), "Steve");
 		//m_pCameraMngr->MoveForward(-m_fMovementSpeed * fMultiplier);
+=======
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(0.0f, 0.0f, -1.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+>>>>>>> parent of 87ecd71... Merge
 	}
-	
+	//m_pCameraMngr->MoveForward(-m_fMovementSpeed * fMultiplier);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
+<<<<<<< HEAD
 		m_pEntityMngr->ApplyForce(vector3(-0.1f, 0, 0), "Steve");
 		//m_pCameraMngr->MoveSideways(-m_fMovementSpeed * fMultiplier);
+=======
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(1.0f, 0.0f, 0.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+>>>>>>> parent of 87ecd71... Merge
 	}
-	
+	//m_pCameraMngr->MoveSideways(-m_fMovementSpeed * fMultiplier);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
+<<<<<<< HEAD
 		m_pEntityMngr->ApplyForce(vector3(0.1f, 0, 0), "Steve");
 		//m_pCameraMngr->MoveSideways(m_fMovementSpeed * fMultiplier);
+=======
+		matrix4 model = m_pEntityMngr->GetModelMatrix("Steve") * glm::translate(vector3(-1.0f, 0.0f, 0.0f));
+		m_pEntityMngr->SetModelMatrix(model, "Steve");
+>>>>>>> parent of 87ecd71... Merge
 	}
-		
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		//m_pCameraMngr->MoveVertical(-m_fMovementSpeed * fMultiplier);
+	//m_pCameraMngr->MoveSideways(m_fMovementSpeed * fMultiplier);
 
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-		//m_pCameraMngr->MoveVertical(m_fMovementSpeed * fMultiplier);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+
+	}
+	//m_pCameraMngr->MoveVertical(-m_fMovementSpeed * fMultiplier);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	{
+
+	}
+	//m_pCameraMngr->MoveVertical(m_fMovementSpeed * fMultiplier);
 #pragma endregion
 }
 //Joystick
