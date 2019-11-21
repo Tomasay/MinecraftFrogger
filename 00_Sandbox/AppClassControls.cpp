@@ -412,25 +412,25 @@ void Application::ProcessKeyboard(void)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_pEntityMngr->ApplyForce(vector3(0, 0, -0.5f), "Steve");
+		m_pEntityMngr->ApplyForce(vector3(0, 0, -0.1f), "Steve");
 		//m_pCameraMngr->MoveForward(m_fMovementSpeed * fMultiplier);
 	}
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_pEntityMngr->ApplyForce(vector3(0, 0, 0.5f), "Steve");
+		m_pEntityMngr->ApplyForce(vector3(0, 0, 0.1f), "Steve");
 		//m_pCameraMngr->MoveForward(-m_fMovementSpeed * fMultiplier);
 	}
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_pEntityMngr->ApplyForce(vector3(-0.5f, 0, 0), "Steve");
+		m_pEntityMngr->ApplyForce(vector3(-0.1f, 0, 0), "Steve");
 		//m_pCameraMngr->MoveSideways(-m_fMovementSpeed * fMultiplier);
 	}
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_pEntityMngr->ApplyForce(vector3(0.5f, 0, 0), "Steve");
+		m_pEntityMngr->ApplyForce(vector3(0.1f, 0, 0), "Steve");
 		//m_pCameraMngr->MoveSideways(m_fMovementSpeed * fMultiplier);
 	}
 		

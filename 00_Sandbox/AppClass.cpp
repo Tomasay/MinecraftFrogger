@@ -34,6 +34,29 @@ void Application::InitVariables(void)
 
 	m_pEntityMngr->UsePhysicsSolver();
 
+	//Creating floor/walls
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
+	vector3 v3PositionFloor = vector3(-25.0f, -51.0f, -40.0f);
+	matrix4 m4PositionFloor = glm::translate(v3PositionFloor) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionFloor);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "LeftWall");
+	vector3 v3PositionLeftWall = vector3(-75.0f, -5.0f, -40.0f);
+	matrix4 m4PositionLeftWall = glm::translate(v3PositionLeftWall) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionLeftWall);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "RightWall");
+	vector3 v3PositionRightWall = vector3(25.0f, -5.0f, -40.0f);
+	matrix4 m4PositionRightWall = glm::translate(v3PositionRightWall) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionRightWall);
+
+	//Finish
+	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Finish");
+	vector3 finishCoords = vector3(0.0f, 0.0f, -35.0f);
+	m4Position = glm::translate(finishCoords);
+	m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	m_pEntityMngr->SetModelMatrix(m4Position);
+
 	for (size_t i = 0; i < laneCount; i++)
 	{
 		//Create creeper
