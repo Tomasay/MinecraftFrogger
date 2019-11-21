@@ -72,7 +72,7 @@ void Application::ProcessKeyPressed(sf::Event a_event)
 	{
 	default: break;
 	case sf::Keyboard::Space:
-		//m_sound.play();
+		m_sound.play();
 		break;
 	case sf::Keyboard::LShift:
 	case sf::Keyboard::RShift:
