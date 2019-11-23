@@ -33,6 +33,7 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4Position);
 	m_pEntityMngr->UsePhysicsSolver(true);
 	m_pEntityMngr->SetMass(1.5);
+	m_pEntityMngr->SetPosition(vector3(0, 0, 10.0f));
 
 	//Creating floor/walls
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "LeftWall");
@@ -103,11 +104,11 @@ void Application::Update(void)
 			vector3 v3PositionCreeper;
 			if (i % 2 == 0)
 			{
-				v3PositionCreeper = vector3(15.0f, 0.0f, 5.0f - (i * 6));
+				v3PositionCreeper = vector3(22.0f, 0.0f, 5.0f - (i * 6));
 			}
 			else
 			{
-				v3PositionCreeper = vector3(-15.0f, 0.0f, 5.0f - (i * 6));
+				v3PositionCreeper = vector3(-22.0f, 0.0f, 5.0f - (i * 6));
 			}
 
 			//Apply position
