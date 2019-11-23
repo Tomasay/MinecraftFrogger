@@ -188,6 +188,8 @@ void Simplex::MyEntityManager::Update(void)
 					{
 						std::cout << "CREEPER" << std::endl;
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+						m_mEntityArray[i]->ApplyForce(glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[j]->ApplyForce(-1.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 					}
 				}
 				if (m_mEntityArray[j]->GetUniqueID() == "Finish")

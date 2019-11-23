@@ -409,8 +409,7 @@ void Application::ProcessKeyboard(void)
 
 	if (bMultiplier)
 		fMultiplier = 5.0f;
-	if (m_pEntityMngr->GetEntity(0)->GetPosition().z > -36.0f && m_pEntityMngr->GetEntity(0)->GetPosition().z < 11.0f)
-	{
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			if (m_pEntityMngr->GetEntity(0))
@@ -434,7 +433,26 @@ void Application::ProcessKeyboard(void)
 		{
 			m_pEntityMngr->ApplyForce(vector3(0.1f, 0, 0), "Steve");
 		}
-	}
+
+		if (m_pEntityMngr->GetEntity(0)->GetPosition().z < -36.0f)
+		{
+			m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Steve");
+		}
+
+		if (m_pEntityMngr->GetEntity(0)->GetPosition().z > 11.0f)
+		{
+			m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Steve");
+		}
+
+		if (m_pEntityMngr->GetEntity(0)->GetPosition().x < -24.0f)
+		{
+			m_pEntityMngr->ApplyForce(vector3(2.0f, 0, 0), "Steve");
+		}
+
+		if (m_pEntityMngr->GetEntity(0)->GetPosition().x > 24.0f)
+		{
+			m_pEntityMngr->ApplyForce(vector3(-2.0f, 0, 0), "Steve");
+		}
 #pragma endregion
 }
 //Joystick
