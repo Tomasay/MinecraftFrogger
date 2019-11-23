@@ -35,12 +35,6 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetMass(1.5);
 
 	//Creating floor/walls
-	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
-	vector3 v3PositionFloor = vector3(-25.0f, -51.0f, -40.0f);
-	matrix4 m4PositionFloor = glm::translate(v3PositionFloor) * glm::scale(vector3(50.0f));
-	m_pEntityMngr->SetModelMatrix(m4PositionFloor);
-	m_pEntityMngr->SetMass(1.5);
-
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "LeftWall");
 	vector3 v3PositionLeftWall = vector3(-75.0f, -5.0f, -40.0f);
 	matrix4 m4PositionLeftWall = glm::translate(v3PositionLeftWall) * glm::scale(vector3(50.0f));
@@ -51,6 +45,12 @@ void Application::InitVariables(void)
 	vector3 v3PositionRightWall = vector3(25.0f, -5.0f, -40.0f);
 	matrix4 m4PositionRightWall = glm::translate(v3PositionRightWall) * glm::scale(vector3(50.0f));
 	m_pEntityMngr->SetModelMatrix(m4PositionRightWall);
+	m_pEntityMngr->SetMass(1.5);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
+	vector3 v3PositionFloor = vector3(-25.0f, -51.0f, -40.0f);
+	matrix4 m4PositionFloor = glm::translate(v3PositionFloor) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionFloor);
 	m_pEntityMngr->SetMass(1.5);
 
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Finish");

@@ -184,7 +184,11 @@ void Simplex::MyEntityManager::Update(void)
 			{
 				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
 				{
-					//std::cout << "I AM COLLIDING" << std::endl;
+					if (colliding == true)
+					{
+						std::cout << "CREEPER" << std::endl;
+						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+					}
 				}
 				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
 				{
@@ -195,17 +199,26 @@ void Simplex::MyEntityManager::Update(void)
 					}
 				}
 			}
-			if (m_mEntityArray[i]->GetUniqueID() == "LeftWall" || m_mEntityArray[i]->GetUniqueID() == "RightWall")
+			if (m_mEntityArray[i]->GetUniqueID().find("Creeper") != std::string::npos)
+			{
+				//Creeper
+				//if(m_mEntityArray[i]->GetUniqueID().at(7))
+				std::cout << m_mEntityArray[i]->GetUniqueID().at(7) << std::endl;
+			}
+
+
+			/*if (m_mEntityArray[i]->GetUniqueID() == "LeftWall" || m_mEntityArray[i]->GetUniqueID() == "RightWall")
 			{
 				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
 				{
 					if (colliding == true)
 					{
 						std::cout << "BRUH" << std::endl;
-						RemoveEntity(m_mEntityArray[j]->GetUniqueID());
+						PEntity temp = m_mEntityArray[j];
+						RemoveEntity(temp->GetUniqueID());
 					}
 				}
-			}
+			}*/
 		}
 		//Update each entity
 		m_mEntityArray[i]->Update();
