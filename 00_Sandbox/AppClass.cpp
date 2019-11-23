@@ -59,12 +59,6 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4PositionFinish);
 	m_pEntityMngr->SetMass(1.5);
 
-	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "TEST");
-	vector3 v3PositionTest = vector3(0.0f, 0.0f, -37.0f);
-	matrix4 m4PositionTest = glm::translate(v3PositionTest);
-	m_pEntityMngr->SetModelMatrix(m4PositionTest);
-	m_pEntityMngr->SetMass(1.5);
-
 	//for (size_t i = 0; i < laneCount; i++)
 	//{
 	//	//Create creeper
