@@ -201,9 +201,22 @@ void Simplex::MyEntityManager::Update(void)
 			}
 			if (m_mEntityArray[i]->GetUniqueID().find("Creeper") != std::string::npos)
 			{
-				//Creeper
-				//if(m_mEntityArray[i]->GetUniqueID().at(7))
-				std::cout << m_mEntityArray[i]->GetUniqueID().at(7) << std::endl;
+				//If they're an even numbered creeper it means 
+				if (m_mEntityArray[i]->GetUniqueID().at(7) % 2 == 0)
+				{
+					if (m_mEntityArray[2])
+					{
+						if (colliding == true)
+						{
+							RemoveEntity(m_mEntityArray[i]->GetUniqueID());
+						}
+					}
+				}
+				else
+				{
+
+				}
+				//std::cout << m_mEntityArray[i]->GetUniqueID().at(7) << std::endl;
 			}
 
 

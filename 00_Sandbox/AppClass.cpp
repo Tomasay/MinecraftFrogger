@@ -97,7 +97,7 @@ void Application::Update(void)
 		for (size_t i = 0; i < laneCount; i++)
 		{
 			//Create creeper
-			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
+		 m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
 
 			//Assign position and rotation
 			vector3 v3PositionCreeper;
