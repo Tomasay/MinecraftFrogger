@@ -157,8 +157,14 @@ void Application::DrawGUI(void)
 			ImGui::Text("FrameRate: %.2f [FPS] -> %.3f [ms/frame]\n",
 				ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
 			ImGui::Separator();
-			ImGui::Text("Control:\n");
+			ImGui::Text("Controls:\n");
 			ImGui::Text("   WASD: Movement\n");
+
+			ImGui::Text("Rules:\n");
+			ImGui::Text("   Reach the pig!\n");
+			ImGui::Text("   Don't touch creepers!\n");
+			
+
 		}
 		ImGui::End();
 	}

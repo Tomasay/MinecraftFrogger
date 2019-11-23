@@ -53,9 +53,9 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4PositionFloor);
 	m_pEntityMngr->SetMass(1.5);
 
-	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Finish");
-	vector3 v3PositionFinish = vector3(0.0f, 0.0f, -30.0f);
-	matrix4 m4PositionFinish = glm::translate(v3PositionFinish);
+	m_pEntityMngr->AddEntity("Minecraft\\Pig.obj", "Finish");
+	vector3 v3PositionFinish = vector3(0.0f, 0.0f, -38.0f);
+	matrix4 m4PositionFinish = glm::translate(v3PositionFinish) * glm::scale(vector3(3.0f));;
 	m_pEntityMngr->SetModelMatrix(m4PositionFinish);
 	m_pEntityMngr->SetMass(1.5);
 

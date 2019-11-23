@@ -24,10 +24,7 @@ void Application::ProcessMousePressed(sf::Event a_event)
 		gui.m_bMousePressed[1] = true;
 		m_bArcBall = true;
 		break;
-	case sf::Mouse::Button::Right:
-		gui.m_bMousePressed[2] = true;
-		m_bFPC = true;
-		break;
+
 	}
 
 	for (int i = 0; i < 3; i++)
@@ -412,10 +409,6 @@ void Application::ProcessKeyboard(void)
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
-			if (m_pEntityMngr->GetEntity(0))
-			{
-				std::cout << m_pEntityMngr->GetEntity(0)->GetPosition().z << std::endl;
-			}
 			m_pEntityMngr->ApplyForce(vector3(0, 0, -0.1f), "Steve");
 		}
 

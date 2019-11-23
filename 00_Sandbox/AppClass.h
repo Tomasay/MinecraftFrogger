@@ -24,7 +24,6 @@ class Application
 	uint m_uObjects = 0; //Number of objects in the scene
 	uint m_uOctantLevels = 0; //Number of levels in the octree
 	MyOctant* m_pRoot = nullptr; //Pointer points to the root node of the octree
-
 	int fDelta = 0;
 
 private:
@@ -65,6 +64,7 @@ private:
 	sf::Music m_soundBGM; //background music
 
 public:
+
 #pragma region Constructor / Run / Destructor
 	/*
 	USAGE: Constructor
