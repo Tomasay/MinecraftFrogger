@@ -13,7 +13,7 @@ int timeSpawned; //Time the creepers were last spawned
 
 void Application::InitVariables(void)
 {
-	m_sProgrammer = "Alberto Bobadilla - labigm@rit.edu";
+	m_sProgrammer = " Crosby, Grayson \n Ge, Annie \n Ratliff, Thomas \n Saha, Ankita";
 
 	//Set the position and target of the camera
 	m_pCameraMngr->SetPositionTargetAndUpward(
