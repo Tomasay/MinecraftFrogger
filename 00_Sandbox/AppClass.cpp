@@ -53,27 +53,27 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4PositionRightWall);
 	m_pEntityMngr->SetMass(1.5);
 
-	for (size_t i = 0; i < laneCount; i++)
-	{
-		//Create creeper
-		m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
-
-		//Assign position and rotation
-		vector3 v3PositionCreeper;
-		if (i % 2 == 0)
-		{
-			v3PositionCreeper = vector3(20.0f, 0.0f, 5.0f - (i * 6));
-		}
-		else
-		{
-			v3PositionCreeper = vector3(-20.0f, 0.0f, 5.0f - (i * 6));
-		}
-
-		//Apply position and rotation
-		m_pEntityMngr->SetPosition(v3PositionCreeper);
-		creeperCount++;
-		m_pEntityMngr->UsePhysicsSolver(true);
-	}
+	//for (size_t i = 0; i < laneCount; i++)
+	//{
+	//	//Create creeper
+	//	m_pEntityMngr->AddEntity("Minecraft\\Cow.obj", ("Creeper" + std::to_string(creeperCount)));
+	//
+	//	//Assign position and rotation
+	//	vector3 v3PositionCreeper;
+	//	if (i % 2 == 0)
+	//	{
+	//		v3PositionCreeper = vector3(20.0f, 0.0f, 5.0f - (i * 6));
+	//	}
+	//	else
+	//	{
+	//		v3PositionCreeper = vector3(-20.0f, 0.0f, 5.0f - (i * 6));
+	//	}
+	//
+	//	//Apply position and rotation
+	//	m_pEntityMngr->SetPosition(v3PositionCreeper);
+	//	creeperCount++;
+	//	m_pEntityMngr->UsePhysicsSolver(true);
+	//}
 	timeSpawned = currentTime;
 
 	m_uOctantLevels = 1;

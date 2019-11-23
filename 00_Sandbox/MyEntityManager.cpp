@@ -179,9 +179,28 @@ void Simplex::MyEntityManager::Update(void)
 		for (uint j = i + 1; j < m_uEntityCount; j++)
 		{
 			//if objects are colliding resolve the collision
-			if (m_mEntityArray[i]->IsColliding(m_mEntityArray[j]))
+			bool colliding = m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
+			if (m_mEntityArray[i]->GetUniqueID() == "Steve")
 			{
-				m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
+				{
+					if (colliding == true)
+					{
+						std::cout << "I AM COLLIDING" << std::endl;
+
+					}
+				}
+			}
+			if (m_mEntityArray[i]->GetUniqueID().find("Creeper") != std::string::npos)
+			{
+				if (m_mEntityArray[j]->GetUniqueID() == "LeftWall" || m_mEntityArray[j]->GetUniqueID() == "RightWall")
+				{
+					if (colliding == true)
+					{
+						std::cout << "BRUH" << std::endl;
+						RemoveEntity(m_mEntityArray[i]->GetUniqueID());
+					}
+				}
 			}
 		}
 		//Update each entity
