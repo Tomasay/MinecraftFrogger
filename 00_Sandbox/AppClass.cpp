@@ -4,7 +4,7 @@ using namespace Simplex;
 
 int laneCount = 6;//Number of lanes of creepers
 int creeperCount = 0; //Total number of creepers spawned
-float creeperSpeed = 0.01f; //How fast the creepers move
+float creeperSpeed = 0.15f; //How fast the creepers move
 int creeperInterval = 3; //How often to spawn creepers
 float deltaTime = 0.0f;
 
@@ -119,9 +119,9 @@ void Application::Update(void)
 	}
 
 
-	//Move each creeper forward
-	for (size_t i = 0; i < creeperCount; i++)
-	{
+	////Move each creeper forward
+	//for (size_t i = 0; i < creeperCount; i++)
+	//{
 		//Move each creeper forward
 		for (size_t i = 0; i < creeperCount; i++)
 		{
@@ -130,7 +130,7 @@ void Application::Update(void)
 			else
 				m_pEntityMngr->ApplyForce(vector3(creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
 		}
-	}
+	//}
 
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();

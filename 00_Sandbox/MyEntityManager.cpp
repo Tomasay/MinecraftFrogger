@@ -220,7 +220,7 @@ void Simplex::MyEntityManager::Update(void)
 			}
 
 
-			/*if (m_mEntityArray[i]->GetUniqueID() == "LeftWall" || m_mEntityArray[i]->GetUniqueID() == "RightWall")
+			if (m_mEntityArray[i]->GetUniqueID() == "LeftWall" || m_mEntityArray[i]->GetUniqueID() == "RightWall")
 			{
 				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
 				{
@@ -231,7 +231,7 @@ void Simplex::MyEntityManager::Update(void)
 						RemoveEntity(temp->GetUniqueID());
 					}
 				}
-			}*/
+			}
 		}
 		//Update each entity
 		m_mEntityArray[i]->Update();
