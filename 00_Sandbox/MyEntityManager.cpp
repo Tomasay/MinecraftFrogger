@@ -184,6 +184,10 @@ void Simplex::MyEntityManager::Update(void)
 			{
 				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
 				{
+					//std::cout << "I AM COLLIDING" << std::endl;
+				}
+				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
+				{
 					if (colliding == true)
 					{
 						std::cout << "I AM COLLIDING" << std::endl;
