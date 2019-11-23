@@ -187,18 +187,18 @@ void Simplex::MyEntityManager::Update(void)
 					if (colliding == true)
 					{
 						std::cout << "I AM COLLIDING" << std::endl;
-
+						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 					}
 				}
 			}
-			if (m_mEntityArray[i]->GetUniqueID().find("Creeper") != std::string::npos)
+			if (m_mEntityArray[i]->GetUniqueID() == "LeftWall" || m_mEntityArray[i]->GetUniqueID() == "RightWall")
 			{
-				if (m_mEntityArray[j]->GetUniqueID() == "LeftWall" || m_mEntityArray[j]->GetUniqueID() == "RightWall")
+				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
 				{
 					if (colliding == true)
 					{
 						std::cout << "BRUH" << std::endl;
-						RemoveEntity(m_mEntityArray[i]->GetUniqueID());
+						RemoveEntity(m_mEntityArray[j]->GetUniqueID());
 					}
 				}
 			}
