@@ -163,8 +163,38 @@ void Application::DrawGUI(void)
 			ImGui::Text("Rules:\n");
 			ImGui::Text("   Reach the pig!\n");
 			ImGui::Text("   Don't touch creepers!\n");
-			
+		}
+		ImGui::End();
+	}
 
+	//Win screen
+	if(m_pEntityMngr->gameWin)
+	{
+		NewFrame();
+		ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiSetCond_FirstUseEver);
+		String sAbout = m_pSystem->GetAppName() + " - About";
+		ImGui::Begin(sAbout.c_str(), (bool*)0, window_flags);
+		{
+			ImGui::Separator();
+			ImGui::Separator();
+			ImGui::TextColored(ImColor(0, 0, 255), "YOU WIN!");
+		}
+		ImGui::End();
+	}
+
+	//Lose screen
+	if (m_pEntityMngr->gameLose)
+	{
+		NewFrame();
+		ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiSetCond_FirstUseEver);
+		String sAbout = m_pSystem->GetAppName() + " - About";
+		ImGui::Begin(sAbout.c_str(), (bool*)0, window_flags);
+		{
+			ImGui::Separator();
+			ImGui::Separator();
+			ImGui::TextColored(ImColor(255, 0, 0), "YOU LOSE :(");
 		}
 		ImGui::End();
 	}

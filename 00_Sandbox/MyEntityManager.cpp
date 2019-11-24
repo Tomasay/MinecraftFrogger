@@ -186,6 +186,8 @@ void Simplex::MyEntityManager::Update(void)
 				{
 					if (colliding == true)
 					{
+						gameLose = true;
+						gameWin = false;
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
@@ -196,9 +198,9 @@ void Simplex::MyEntityManager::Update(void)
 				{
 					if (colliding == true)
 					{
-						std::cout << "I AM COLLIDING" << std::endl;
+						gameWin = true;
+						gameLose = false;
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
-						
 					}
 				}
 			}

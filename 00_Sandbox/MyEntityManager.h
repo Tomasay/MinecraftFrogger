@@ -18,6 +18,8 @@ class MyEntityManager
 	static MyEntityManager* m_pInstance; // Singleton pointer
 
 public:
+	bool gameWin = false;
+	bool gameLose = false;
 	/*
 	Usage: Gets the singleton pointer
 	Arguments: ---
