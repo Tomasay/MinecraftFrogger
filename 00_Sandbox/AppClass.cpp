@@ -141,10 +141,40 @@ void Application::Update(void)
 		//Move each creeper forward
 		for (size_t i = 0; i < creeperCount; i++)
 		{
+			//Bounce creepers back into world bounds if knocked out
+			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z < -36.0f)
+			{
+				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
+			}
+
+			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z > 11.0f)
+			{
+				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Creeper" + std::to_string(i));
+			}
+
 			if (i % 2 == 0)
+			{
+				//Move it left
 				m_pEntityMngr->ApplyForce(vector3(-creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
+
+				//Delete it if it goes too far
+				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x < -24.0f)
+				{
+					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)));
+				}
+
+			}
 			else
+			{
+				//Move it right
 				m_pEntityMngr->ApplyForce(vector3(creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
+
+				//Delete it if it goes too far
+				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x > 24.0f)
+				{
+					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)));
+				}
+			}
 		}
 	//}
 
