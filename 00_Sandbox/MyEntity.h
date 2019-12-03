@@ -32,6 +32,7 @@ class MyEntity
 
 	MySolver* m_pSolver = nullptr; //Physics MySolver
 public:
+	int row = 0; //What row the object is currently in
 	/*
 	Usage: Constructor that specifies the name attached to the MyEntity
 	Arguments:

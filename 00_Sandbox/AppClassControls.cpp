@@ -446,8 +446,10 @@ void Application::ProcessKeyboard(void)
 		{
 			m_pEntityMngr->ApplyForce(vector3(-2.0f, 0, 0), "Steve");
 		}
+
 #pragma endregion
 }
+
 //Joystick
 void Application::ProcessJoystick(void)
 {

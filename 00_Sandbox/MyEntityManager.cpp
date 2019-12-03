@@ -180,9 +180,12 @@ void Simplex::MyEntityManager::Update(void)
 		{
 			//if objects are colliding resolve the collision
 			bool colliding = m_mEntityArray[i]->IsColliding(m_mEntityArray[j]);
+
+			//Checking collisions on steve
 			if (m_mEntityArray[i]->GetUniqueID() == "Steve")
 			{
-				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
+				//If other collider is a creeper, and it has the same row as steve
+				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
 				{
 					if (colliding == true)
 					{

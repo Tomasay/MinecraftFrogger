@@ -93,22 +93,28 @@ void Application::Update(void)
 
 	currentTime = time(NULL);
 
+	float playerZPos = m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->GetPosition().z;
+
 	if (currentTime >= timeSpawned + creeperInterval)
 	{
 		for (size_t i = 0; i < laneCount; i++)
 		{
 			//Create creeper
-		 m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
+			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
+
+			//Assign its row
+			m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(creeperCount)))->row = i;
 
 			//Assign position and rotation
 			vector3 v3PositionCreeper;
+			float lanePosition = 5.0f - (i * 6); //z pos of where creeper is in current lane
 			if (i % 2 == 0)
 			{
-				v3PositionCreeper = vector3(22.0f, 0.0f, 5.0f - (i * 6));
+				v3PositionCreeper = vector3(22.0f, 0.0f, lanePosition);
 			}
 			else
 			{
-				v3PositionCreeper = vector3(-22.0f, 0.0f, 5.0f - (i * 6));
+				v3PositionCreeper = vector3(-22.0f, 0.0f, lanePosition);
 			}
 
 			//Apply position
@@ -119,6 +125,15 @@ void Application::Update(void)
 		timeSpawned = currentTime;
 	}
 
+	//Update player's row
+	for (size_t i = 0; i < laneCount; i++)
+	{
+		float lanePosition = 5.0f - (i * 6); //z pos of where creeper is in current lane
+		if (playerZPos > (lanePosition - 2) && playerZPos < (lanePosition + 2))
+		{
+			m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->row = i;
+		}
+	}
 
 	////Move each creeper forward
 	//for (size_t i = 0; i < creeperCount; i++)
