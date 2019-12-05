@@ -53,14 +53,14 @@ void Application::ProcessMouseReleased(sf::Event a_event)
 }
 void Application::ProcessMouseScroll(sf::Event a_event)
 {
-	gui.io.MouseWheel = a_event.mouseWheelScroll.delta;
-	float fSpeed = a_event.mouseWheelScroll.delta;
-	float fMultiplier = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::RShift);
-
-	if (fMultiplier)
-		fSpeed *= 2.0f;
-	m_pCameraMngr->MoveForward(-fSpeed);
+	//gui.io.MouseWheel = a_event.mouseWheelScroll.delta;
+	//float fSpeed = a_event.mouseWheelScroll.delta;
+	//float fMultiplier = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) ||
+	//	sf::Keyboard::isKeyPressed(sf::Keyboard::RShift);
+	//
+	//if (fMultiplier)
+	//	fSpeed *= 2.0f;
+	//m_pCameraMngr->MoveForward(-fSpeed);
 }
 //Keyboard
 void Application::ProcessKeyPressed(sf::Event a_event)
@@ -445,6 +445,12 @@ void Application::ProcessKeyboard(void)
 		if (m_pEntityMngr->GetEntity(0)->GetPosition().x > 24.0f)
 		{
 			m_pEntityMngr->ApplyForce(vector3(-2.0f, 0, 0), "Steve");
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		{
+			m_pEntityMngr->SetPosition(vector3(0, 0, 10.0f), "Steve");
+			m_pEntityMngr->gameWin = false;
+			m_pEntityMngr->gameLose = false;
 		}
 
 #pragma endregion
