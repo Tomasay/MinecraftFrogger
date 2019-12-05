@@ -3,13 +3,17 @@
 using namespace Simplex;
 
 int laneCount = 6;//Number of lanes of creepers
-int creeperCount = 0; //Total number of creepers spawned
+int mobCount = 0; //Total number of mobs spawned
 float creeperSpeed = 0.15f; //How fast the creepers move
+float cowSpeed = .30f; //How fast the cows move
 int creeperInterval = 3; //How often to spawn creepers
+int cowInterval = 3; //How often to spawn cows
 float deltaTime = 0.0f;
 
 time_t currentTime;
-int timeSpawned; //Time the creepers were last spawned
+time_t cowCurrentTime;
+int creeperTimeSpawned; //Time the creepers were last spawned
+int cowTimeSpawned; //Time the cows were last spawned
 
 void Application::InitVariables(void)
 {
@@ -60,29 +64,6 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4PositionFinish);
 	m_pEntityMngr->SetMass(1.5);
 
-	//for (size_t i = 0; i < laneCount; i++)
-	//{
-	//	//Create creeper
-	//	m_pEntityMngr->AddEntity("Minecraft\\Cow.obj", ("Creeper" + std::to_string(creeperCount)));
-	//
-	//	//Assign position and rotation
-	//	vector3 v3PositionCreeper;
-	//	if (i % 2 == 0)
-	//	{
-	//		v3PositionCreeper = vector3(20.0f, 0.0f, 5.0f - (i * 6));
-	//	}
-	//	else
-	//	{
-	//		v3PositionCreeper = vector3(-20.0f, 0.0f, 5.0f - (i * 6));
-	//	}
-	//
-	//	//Apply position and rotation
-	//	m_pEntityMngr->SetPosition(v3PositionCreeper);
-	//	creeperCount++;
-	//	m_pEntityMngr->UsePhysicsSolver(true);
-	//}
-	timeSpawned = currentTime;
-
 	m_uOctantLevels = 1;
 	m_pEntityMngr->Update();
 	m_pRoot = new MyOctant(m_uOctantLevels, 5);
@@ -91,38 +72,88 @@ void Application::Update(void)
 {
 	deltaTime = ImGui::GetIO().Framerate / 1000;
 
+	cowCurrentTime = time(NULL);
 	currentTime = time(NULL);
 
-	float playerZPos = m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->GetPosition().z;
+	//Tried out a differnt way to implement time
+	//float a = m_pSystem->GetTimeSinceStart(18);
 
-	if (currentTime >= timeSpawned + creeperInterval)
+	//if ((int)a % creeperInterval == 0.0f)
+	//{
+
+	//	for (size_t i = 0; i < laneCount; i++)
+	//	{
+	//		if (i % 2 == 0)
+	//		{
+	//			//Create creeper
+	//			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(mobCount)));
+
+	//			//Assign its row
+	//			m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(mobCount)))->row = i;
+	//			//Assign position and rotation
+	//			vector3 v3PositionCreeper;
+	//			float lanePosition = 5.0f - (i * 6); //z pos of where creeper is in current lane
+
+	//			v3PositionCreeper = vector3(22.0f, 0.0f, lanePosition);
+
+	//			//Apply position
+	//			m_pEntityMngr->SetPosition(v3PositionCreeper);
+	//			mobCount++;
+	//			m_pEntityMngr->UsePhysicsSolver(true);
+	//			//creeperTimeSpawned = currentTime;
+	//		}
+	//	}
+	//}
+
+	float playerZPos = m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->GetPosition().z;
+	if (currentTime >= creeperTimeSpawned + creeperInterval)
 	{
 		for (size_t i = 0; i < laneCount; i++)
 		{
-			//Create creeper
-			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(creeperCount)));
-
-			//Assign its row
-			m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(creeperCount)))->row = i;
-
-			//Assign position and rotation
-			vector3 v3PositionCreeper;
-			float lanePosition = 5.0f - (i * 6); //z pos of where creeper is in current lane
 			if (i % 2 == 0)
 			{
+				//Create creeper
+				m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(mobCount)));
+
+				//Assign its row
+				m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(mobCount)))->row = i;
+				//Assign position and rotation
+				vector3 v3PositionCreeper;
+				float lanePosition = 5.0f - (i * 6); //z pos of where creeper is in current lane
+
 				v3PositionCreeper = vector3(22.0f, 0.0f, lanePosition);
+
+				//Apply position
+				m_pEntityMngr->SetPosition(v3PositionCreeper);
+				mobCount++;
+				m_pEntityMngr->UsePhysicsSolver(true);
+				creeperTimeSpawned = currentTime;
 			}
 			else
 			{
-				v3PositionCreeper = vector3(-22.0f, 0.0f, lanePosition);
-			}
+				//Create cow
+				m_pEntityMngr->AddEntity("Minecraft\\Cow.obj", ("Cow" + std::to_string(mobCount)));
 
-			//Apply position
-			m_pEntityMngr->SetPosition(v3PositionCreeper);
-			creeperCount++;
-			m_pEntityMngr->UsePhysicsSolver(true);
+				//Assign its row
+				m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(mobCount)))->row = i;
+
+				//Assign position and rotation
+				vector3 v3PositionCow;
+				float lanePosition = 5.0f - (i * 6); //z pos of where cow is in current lane
+
+				v3PositionCow = vector3(-22.0f, 0.0f, lanePosition);
+
+				//Trying to make the cows rotate
+				/*matrix4 m4PositionCow = glm::translate(v3PositionCow);
+				m4PositionCow = glm::rotate(m4PositionCow, glm::radians(270.0f), glm::vec3(0.0f, 0.0f, 0.0f));*/
+				cowTimeSpawned = cowCurrentTime;
+
+				//Apply position
+				m_pEntityMngr->SetPosition(v3PositionCow);
+				mobCount++;
+				m_pEntityMngr->UsePhysicsSolver(true);
+			}
 		}
-		timeSpawned = currentTime;
 	}
 
 	//Update player's row
@@ -139,12 +170,17 @@ void Application::Update(void)
 	//for (size_t i = 0; i < creeperCount; i++)
 	//{
 		//Move each creeper forward
-		for (size_t i = 0; i < creeperCount; i++)
+		for (size_t i = 0; i < mobCount; i++)
 		{
-			//Bounce creepers back into world bounds if knocked out
+			//Bounce mobs back into world bounds if knocked out
 			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z < -36.0f)
 			{
 				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
+			}
+
+			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z < -36.0f)
+			{
+				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Cow" + std::to_string(i));
 			}
 
 			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z > 11.0f)
@@ -152,11 +188,15 @@ void Application::Update(void)
 				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Creeper" + std::to_string(i));
 			}
 
+			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z > 11.0f)
+			{
+				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Cow" + std::to_string(i));
+			}
+
 			if (i % 2 == 0)
 			{
 				//Move it left
 				m_pEntityMngr->ApplyForce(vector3(-creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
-
 				//Delete it if it goes too far
 				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x < -24.0f)
 				{
@@ -167,12 +207,11 @@ void Application::Update(void)
 			else
 			{
 				//Move it right
-				m_pEntityMngr->ApplyForce(vector3(creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
-
+				m_pEntityMngr->ApplyForce(vector3(cowSpeed * deltaTime, 0.0f, 0.0f), "Cow" + std::to_string(i));
 				//Delete it if it goes too far
-				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x > 24.0f)
+				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().x > 24.0f)
 				{
-					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)));
+					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)));
 				}
 			}
 		}

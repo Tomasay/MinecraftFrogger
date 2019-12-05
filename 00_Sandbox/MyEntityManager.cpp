@@ -197,6 +197,18 @@ void Simplex::MyEntityManager::Update(void)
 						m_mEntityArray[j]->ApplyForce(-1.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 					}
 				}
+				if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
+				{
+					if (colliding == true)
+					{
+						gameLose = true;
+						gameWin = false;
+						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
+						m_mEntityArray[j]->ApplyForce(-1.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+					}
+				}
 				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
 				{
 					if (colliding == true)
@@ -204,6 +216,18 @@ void Simplex::MyEntityManager::Update(void)
 						gameWin = true;
 						gameLose = false;
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+					}
+				}
+			}
+			if (m_mEntityArray[i]->GetUniqueID().find("Creeper") != std::string::npos)
+			{
+				if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos)
+				{
+					//Chain reaction
+					if (colliding == true)
+					{
+						std::cout << "BOOM" << std::endl;
+						
 					}
 				}
 			}
