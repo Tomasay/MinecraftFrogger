@@ -163,6 +163,7 @@ void Application::DrawGUI(void)
 			ImGui::Text("Rules:\n");
 			ImGui::Text("   Reach the pig!\n");
 			ImGui::Text("   Don't touch creepers!\n");
+			ImGui::Text("   Press R to reset\n");
 
 			ImGui::Text("Steve's current row: %i", m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->row);
 		}
