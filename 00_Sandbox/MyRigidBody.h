@@ -16,6 +16,8 @@ class MyRigidBody
 public:
 	typedef MyRigidBody* PRigidBody; //MyEntity Pointer
 
+	vector3 m_v3DisplayColor = C_YELLOW; //Color to display bounding box
+
 protected:
 	MeshManager* m_pMeshMngr = nullptr; //for displaying the Rigid Body
 

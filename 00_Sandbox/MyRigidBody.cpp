@@ -13,6 +13,8 @@ void MyRigidBody::Init(void)
 	m_v3ColorColliding = C_RED;
 	m_v3ColorNotColliding = C_WHITE;
 
+	m_v3DisplayColor = C_YELLOW; //Color to display bounding box
+
 	m_v3CenterL = ZERO_V3;
 	m_v3CenterG = ZERO_V3;
 	m_v3MinL = ZERO_V3;
@@ -346,9 +348,9 @@ void MyRigidBody::AddToRenderList(void)
 	if (m_bVisibleARBB)
 	{
 		if (m_uCollidingCount > 0)
-			m_pMeshMngr->AddWireCubeToRenderList(glm::translate(m_v3CenterG) * glm::scale(m_v3ARBBSize), C_YELLOW);
+			m_pMeshMngr->AddWireCubeToRenderList(glm::translate(m_v3CenterG) * glm::scale(m_v3ARBBSize), m_v3DisplayColor);
 		else
-			m_pMeshMngr->AddWireCubeToRenderList(glm::translate(m_v3CenterG) * glm::scale(m_v3ARBBSize), C_YELLOW);
+			m_pMeshMngr->AddWireCubeToRenderList(glm::translate(m_v3CenterG) * glm::scale(m_v3ARBBSize), m_v3DisplayColor);
 	}
 }
 bool MyRigidBody::IsInCollidingArray(MyRigidBody* a_pEntry)
