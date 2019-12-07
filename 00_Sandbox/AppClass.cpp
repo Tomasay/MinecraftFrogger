@@ -52,6 +52,18 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4PositionRightWall);
 	m_pEntityMngr->SetMass(1.5);
 
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "BackWall");
+	vector3 v3PositionBackWall = vector3(-25.0f, -5.0f, -90.0f);
+	matrix4 m4PositionBackWall = glm::translate(v3PositionBackWall) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionBackWall);
+	m_pEntityMngr->SetMass(1.5);
+
+	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "FrontWall");
+	vector3 v3PositionFrontWall = vector3(-25.0f, -5.0f, 10.0f);
+	matrix4 m4PositionFrontWall = glm::translate(v3PositionFrontWall) * glm::scale(vector3(50.0f));
+	m_pEntityMngr->SetModelMatrix(m4PositionFrontWall);
+	m_pEntityMngr->SetMass(1.5);
+
 	m_pEntityMngr->AddEntity("Minecraft\\Cube.obj", "Floor");
 	vector3 v3PositionFloor = vector3(-25.0f, -51.0f, -40.0f);
 	matrix4 m4PositionFloor = glm::translate(v3PositionFloor) * glm::scale(vector3(50.0f));
@@ -172,47 +184,47 @@ void Application::Update(void)
 		//Move each creeper forward
 		for (size_t i = 0; i < mobCount; i++)
 		{
-			//Bounce mobs back into world bounds if knocked out
-			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z < -36.0f)
-			{
-				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
-			}
-
-			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z < -36.0f)
-			{
-				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Cow" + std::to_string(i));
-			}
-
-			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z > 11.0f)
-			{
-				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Creeper" + std::to_string(i));
-			}
-
-			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z > 11.0f)
-			{
-				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Cow" + std::to_string(i));
-			}
+//			//Bounce mobs back into world bounds if knocked out
+//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z < -36.0f)
+//			{
+//				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
+//			}
+//
+//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z < -36.0f)
+//			{
+//				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Cow" + std::to_string(i));
+//			}
+//
+//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z > 11.0f)
+//			{
+//				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Creeper" + std::to_string(i));
+//			}
+//
+//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z > 11.0f)
+//			{
+//				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Cow" + std::to_string(i));
+//			}
 
 			if (i % 2 == 0)
 			{
 				//Move it left
 				m_pEntityMngr->ApplyForce(vector3(-creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
-				//Delete it if it goes too far
-				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x < -24.0f)
-				{
-					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)));
-				}
+//				//Delete it if it goes too far
+//				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x < -24.0f)
+//				{
+//					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)));
+//				}
 
 			}
 			else
 			{
 				//Move it right
 				m_pEntityMngr->ApplyForce(vector3(cowSpeed * deltaTime, 0.0f, 0.0f), "Cow" + std::to_string(i));
-				//Delete it if it goes too far
-				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().x > 24.0f)
-				{
-					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)));
-				}
+//				//Delete it if it goes too far
+//				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().x > 24.0f)
+//				{
+//					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)));
+//				}
 			}
 		}
 	//}
