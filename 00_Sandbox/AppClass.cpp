@@ -78,7 +78,7 @@ void Application::InitVariables(void)
 
 	m_uOctantLevels = 1;
 	m_pEntityMngr->Update();
-	m_pRoot = new MyOctant(m_uOctantLevels, 5);
+	//m_pRoot = new MyOctant(m_uOctantLevels, 5);
 }
 void Application::Update(void)
 {
@@ -136,9 +136,13 @@ void Application::Update(void)
 				v3PositionCreeper = vector3(22.0f, 0.0f, lanePosition);
 
 				//Apply position
+				matrix4 m4Position = glm::translate(v3PositionCreeper);
+				m_pEntityMngr->SetModelMatrix(m4Position);
+
+				m_pEntityMngr->UsePhysicsSolver(true);
 				m_pEntityMngr->SetPosition(v3PositionCreeper);
 				mobCount++;
-				m_pEntityMngr->UsePhysicsSolver(true);
+				//m_pEntityMngr->UsePhysicsSolver(true);
 				creeperTimeSpawned = currentTime;
 			}
 			else
@@ -161,9 +165,13 @@ void Application::Update(void)
 				cowTimeSpawned = cowCurrentTime;
 
 				//Apply position
+				matrix4 m4Position = glm::translate(v3PositionCow);
+				m_pEntityMngr->SetModelMatrix(m4Position);
+
+				m_pEntityMngr->UsePhysicsSolver(true);
 				m_pEntityMngr->SetPosition(v3PositionCow);
 				mobCount++;
-				m_pEntityMngr->UsePhysicsSolver(true);
+				//m_pEntityMngr->UsePhysicsSolver(true);
 			}
 		}
 	}
@@ -237,8 +245,8 @@ void Application::Update(void)
 	if (fDelta % 2 == 0)
 	{
 		m_pEntityMngr->ClearDimensionSetAll();
-		SafeDelete(m_pRoot);
-		m_pRoot = new MyOctant(m_uOctantLevels, 5);
+		//SafeDelete(m_pRoot);
+		//m_pRoot = new MyOctant(m_uOctantLevels, 5);
 	}
 
 	//Is the arcball active?
@@ -259,7 +267,7 @@ void Application::Display(void)
 	ClearScreen();
 	
 	//display octree
-	m_pRoot->Display();
+	//m_pRoot->Display();
 
 	// draw a skybox
 	m_pMeshMngr->AddSkyboxToRenderList();
@@ -282,5 +290,5 @@ void Application::Release(void)
 	//release GUI
 	ShutdownGUI();
 
-	SafeDelete(m_pRoot);
+	//SafeDelete(m_pRoot);
 }
