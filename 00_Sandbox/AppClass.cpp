@@ -66,7 +66,7 @@ void Application::InitVariables(void)
 
 	m_uOctantLevels = 1;
 	m_pEntityMngr->Update();
-	m_pRoot = new MyOctant(m_uOctantLevels, 5);
+	//m_pRoot = new MyOctant(m_uOctantLevels, 5);
 }
 void Application::Update(void)
 {
@@ -233,8 +233,8 @@ void Application::Update(void)
 	if (fDelta % 2 == 0)
 	{
 		m_pEntityMngr->ClearDimensionSetAll();
-		SafeDelete(m_pRoot);
-		m_pRoot = new MyOctant(m_uOctantLevels, 5);
+		//SafeDelete(m_pRoot);
+		//m_pRoot = new MyOctant(m_uOctantLevels, 5);
 	}
 
 	//Is the arcball active?
@@ -255,7 +255,7 @@ void Application::Display(void)
 	ClearScreen();
 	
 	//display octree
-	m_pRoot->Display();
+	//m_pRoot->Display();
 
 	// draw a skybox
 	m_pMeshMngr->AddSkyboxToRenderList();
@@ -278,5 +278,5 @@ void Application::Release(void)
 	//release GUI
 	ShutdownGUI();
 
-	SafeDelete(m_pRoot);
+	//SafeDelete(m_pRoot);
 }
