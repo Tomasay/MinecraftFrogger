@@ -185,30 +185,25 @@ void Simplex::MyEntityManager::Update(void)
 			if (m_mEntityArray[i]->GetUniqueID() == "Steve")
 			{
 				//If other collider is a creeper, and it has the same row as steve
-				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
+				if ((m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos || m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos) && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
 				{
 					m_mEntityArray[j]->GetRigidBody()->m_v3DisplayColor = C_BLUE;
 					if (colliding == true)
 					{
+						//Set game state
 						gameLose = true;
 						gameWin = false;
+
+						//Rest easy young soldier (rotates steve)
+						matrix4 m4Position = glm::translate(m_mEntityArray[i]->GetPosition());
+						m4Position = glm::rotate(m4Position, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+						m_mEntityArray[i]->SetModelMatrix(m4Position);
+
+						//Collision
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
 						m_mEntityArray[j]->ApplyForce(-2.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
-					}
-				}
-				else if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
-				{
-					m_mEntityArray[j]->GetRigidBody()->m_v3DisplayColor = C_BLUE;
-					if (colliding == true)
-					{
-						gameLose = true;
-						gameWin = false;
-						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
-						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
-						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
-						m_mEntityArray[j]->ApplyForce(-1.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 					}
 				}
 				else

@@ -454,6 +454,11 @@ void Application::ProcessKeyboard(void)
 		m_pEntityMngr->SetPosition(vector3(0, 0, 10.0f), "Steve");
 		m_pEntityMngr->gameWin = false;
 		m_pEntityMngr->gameLose = false;
+
+		//Reset Rotation
+		matrix4 m4Position = glm::translate(m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->GetPosition());
+		m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->SetModelMatrix(m4Position);
 	}
 
 #pragma endregion
