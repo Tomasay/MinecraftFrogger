@@ -222,7 +222,7 @@ void Simplex::MyEntityManager::Update(void)
 					{
 						gameWin = true;
 						gameLose = false;
-						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
+						//m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 					}
 				}
 			}
