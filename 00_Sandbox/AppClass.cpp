@@ -6,7 +6,7 @@ int laneCount = 6;//Number of lanes of creepers
 int mobCount = 0; //Total number of mobs spawned
 float creeperSpeed = 0.15f; //How fast the creepers move
 float cowSpeed = .30f; //How fast the cows move
-int creeperInterval = 3; //How often to spawn creepers
+int creeperInterval = 2; //How often to spawn creepers
 int cowInterval = 3; //How often to spawn cows
 float deltaTime = 0.0f;
 

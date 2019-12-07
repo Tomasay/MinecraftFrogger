@@ -195,7 +195,7 @@ void Simplex::MyEntityManager::Update(void)
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
-						m_mEntityArray[j]->ApplyForce(-2.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[j]->ApplyForce(-20.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 					}
 				}
 				else if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
@@ -208,7 +208,7 @@ void Simplex::MyEntityManager::Update(void)
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
-						m_mEntityArray[j]->ApplyForce(-1.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[j]->ApplyForce(-10.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 					}
 				}
 				else
@@ -255,8 +255,6 @@ void Simplex::MyEntityManager::Update(void)
 				{
 					if (colliding == true)
 					{
-						//m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
-						//ApplyForce(vector3(0, 0, 2.0f), m_mEntityArray[j]->GetUniqueID);
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 						m_mEntityArray[j]->ApplyForce(vector3(0, 0, 2.0f));
 					}
@@ -268,8 +266,6 @@ void Simplex::MyEntityManager::Update(void)
 				{
 					if (colliding == true)
 					{
-						//m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
-						//ApplyForce(vector3(0, 0, -2.0f), m_mEntityArray[j]->GetUniqueID);
 						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 						m_mEntityArray[j]->ApplyForce(vector3(0, 0, -2.0f));
 					}
@@ -284,7 +280,37 @@ void Simplex::MyEntityManager::Update(void)
 					if (colliding == true)
 					{
 						std::cout << "BOOM" << std::endl;
-						
+						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
+						m_mEntityArray[j]->ApplyForce(-100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[j]->ApplyForce(vector3(0, 30.0f, 0));
+					}
+				}
+				else if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
+				{
+					//Chain reaction
+					if (colliding == true)
+					{
+						std::cout << "BOOM" << std::endl;
+						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
+						m_mEntityArray[j]->ApplyForce(-100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[j]->ApplyForce(vector3(0, 30.0f, 0));
+					}
+				}
+			}
+			if (m_mEntityArray[i]->GetUniqueID().find("Cow") != std::string::npos)
+			{
+				if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos)
+				{
+					//Chain reaction
+					if (colliding == true)
+					{
+						std::cout << "BOOM" << std::endl;
+						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
+						m_mEntityArray[j]->ApplyForce(-100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
+						m_mEntityArray[j]->ApplyForce(vector3(0, 30.0f, 0));
 					}
 				}
 			}
