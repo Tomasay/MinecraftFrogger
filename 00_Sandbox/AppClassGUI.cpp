@@ -182,7 +182,10 @@ void Application::DrawGUI(void)
 			ImGui::Separator();
 			ImGui::Separator();
 			ImGui::TextColored(ImColor(0, 0, 255), "YOU WIN!");
+			ImGui::Separator();
+			ImGui::TextColored(ImColor(0, 0, 255), "Press R to play again");
 		}
+
 		ImGui::End();
 	}
 
@@ -198,7 +201,10 @@ void Application::DrawGUI(void)
 			ImGui::Separator();
 			ImGui::Separator();
 			ImGui::TextColored(ImColor(255, 0, 0), "YOU LOSE :(");
+			ImGui::Separator();
+			ImGui::TextColored(ImColor(255, 0, 0), "Press R to restart");
 		}
+
 		ImGui::End();
 	}
 

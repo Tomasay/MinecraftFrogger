@@ -407,6 +407,8 @@ void Application::ProcessKeyboard(void)
 	if (bMultiplier)
 		fMultiplier = 5.0f;
 
+	if (!m_pEntityMngr->gameWin && !m_pEntityMngr->gameLose)
+	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			m_pEntityMngr->ApplyForce(vector3(0, 0, -0.1f), "Steve");
@@ -426,32 +428,38 @@ void Application::ProcessKeyboard(void)
 		{
 			m_pEntityMngr->ApplyForce(vector3(0.1f, 0, 0), "Steve");
 		}
+	}
 
-		if (m_pEntityMngr->GetEntity(0)->GetPosition().z < -36.0f)
-		{
-			m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Steve");
-		}
+	if (m_pEntityMngr->GetEntity(0)->GetPosition().z < -36.0f)
+	{
+		m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Steve");
+	}
 
-		if (m_pEntityMngr->GetEntity(0)->GetPosition().z > 11.0f)
-		{
-			m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Steve");
-		}
+	if (m_pEntityMngr->GetEntity(0)->GetPosition().z > 11.0f)
+	{
+		m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Steve");
+	}
 
-		if (m_pEntityMngr->GetEntity(0)->GetPosition().x < -24.0f)
-		{
-			m_pEntityMngr->ApplyForce(vector3(2.0f, 0, 0), "Steve");
-		}
+	if (m_pEntityMngr->GetEntity(0)->GetPosition().x < -24.0f)
+	{
+		m_pEntityMngr->ApplyForce(vector3(2.0f, 0, 0), "Steve");
+	}
 
-		if (m_pEntityMngr->GetEntity(0)->GetPosition().x > 24.0f)
-		{
-			m_pEntityMngr->ApplyForce(vector3(-2.0f, 0, 0), "Steve");
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-		{
-			m_pEntityMngr->SetPosition(vector3(0, 0, 10.0f), "Steve");
-			m_pEntityMngr->gameWin = false;
-			m_pEntityMngr->gameLose = false;
-		}
+	if (m_pEntityMngr->GetEntity(0)->GetPosition().x > 24.0f)
+	{
+		m_pEntityMngr->ApplyForce(vector3(-2.0f, 0, 0), "Steve");
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	{
+		m_pEntityMngr->SetPosition(vector3(0, 0, 10.0f), "Steve");
+		m_pEntityMngr->gameWin = false;
+		m_pEntityMngr->gameLose = false;
+
+		//Reset Rotation
+		matrix4 m4Position = glm::translate(m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->GetPosition());
+		m4Position = glm::rotate(m4Position, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->SetModelMatrix(m4Position);
+	}
 
 #pragma endregion
 }
