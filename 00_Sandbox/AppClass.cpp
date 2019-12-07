@@ -124,9 +124,13 @@ void Application::Update(void)
 				v3PositionCreeper = vector3(22.0f, 0.0f, lanePosition);
 
 				//Apply position
+				matrix4 m4Position = glm::translate(v3PositionCreeper);
+				m_pEntityMngr->SetModelMatrix(m4Position);
+
+				m_pEntityMngr->UsePhysicsSolver(true);
 				m_pEntityMngr->SetPosition(v3PositionCreeper);
 				mobCount++;
-				m_pEntityMngr->UsePhysicsSolver(true);
+				//m_pEntityMngr->UsePhysicsSolver(true);
 				creeperTimeSpawned = currentTime;
 			}
 			else
@@ -149,9 +153,13 @@ void Application::Update(void)
 				cowTimeSpawned = cowCurrentTime;
 
 				//Apply position
+				matrix4 m4Position = glm::translate(v3PositionCow);
+				m_pEntityMngr->SetModelMatrix(m4Position);
+
+				m_pEntityMngr->UsePhysicsSolver(true);
 				m_pEntityMngr->SetPosition(v3PositionCow);
 				mobCount++;
-				m_pEntityMngr->UsePhysicsSolver(true);
+				//m_pEntityMngr->UsePhysicsSolver(true);
 			}
 		}
 	}
