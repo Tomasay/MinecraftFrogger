@@ -188,7 +188,7 @@ void Simplex::MyEntityManager::Update(void)
 				if ((m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos || m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos) && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
 				{
 					m_mEntityArray[j]->GetRigidBody()->m_v3DisplayColor = C_BLUE;
-					if (colliding == true)
+					if (colliding == true && gameWin != true)
 					{
 						//Set game state
 						gameLose = true;
@@ -206,19 +206,6 @@ void Simplex::MyEntityManager::Update(void)
 						m_mEntityArray[j]->ApplyForce(-20.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
 					}
 				}
-				else if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos && m_mEntityArray[i]->row == m_mEntityArray[j]->row)
-				{
-					m_mEntityArray[j]->GetRigidBody()->m_v3DisplayColor = C_BLUE;
-					if (colliding == true)
-					{
-						gameLose = true;
-						gameWin = false;
-						m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
-						m_mEntityArray[i]->ApplyForce(100.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
-						m_mEntityArray[i]->ApplyForce(vector3(0, 30.0f, 0));
-						m_mEntityArray[j]->ApplyForce(-1.0f * glm::normalize(m_mEntityArray[i]->GetPosition() - m_mEntityArray[j]->GetPosition()));
-					}
-				}
 				else
 				{
 					m_mEntityArray[j]->GetRigidBody()->m_v3DisplayColor = C_YELLOW;
@@ -226,7 +213,7 @@ void Simplex::MyEntityManager::Update(void)
 
 				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
 				{
-					if (colliding == true)
+					if (colliding == true && gameLose != true)
 					{
 						gameWin = true;
 						gameLose = false;
