@@ -211,17 +211,18 @@ void Simplex::MyEntityManager::Update(void)
 					m_mEntityArray[j]->GetRigidBody()->m_v3DisplayColor = C_YELLOW;
 				}
 
+				//Check for victory and set game state
 				if (m_mEntityArray[j]->GetUniqueID() == "Finish")
 				{
 					if (colliding == true && gameLose != true)
 					{
 						gameWin = true;
 						gameLose = false;
-						//m_mEntityArray[i]->ResolveCollision(m_mEntityArray[j]);
 					}
 				}
 			}
 
+			//Check when mobs collide with walls
 			if (m_mEntityArray[i]->GetUniqueID() == "LeftWall")
 			{
 				if (m_mEntityArray[j]->GetUniqueID().find("Creeper") != std::string::npos)
@@ -267,6 +268,7 @@ void Simplex::MyEntityManager::Update(void)
 				}
 			}
 
+			//Check when mobs collide with each other
 			if (m_mEntityArray[i]->GetUniqueID().find("Creeper") != std::string::npos)
 			{
 				if (m_mEntityArray[j]->GetUniqueID().find("Cow") != std::string::npos)

@@ -8,8 +8,9 @@ float creeperSpeed = 0.15f; //How fast the creepers move
 float cowSpeed = .30f; //How fast the cows move
 int creeperInterval = 2; //How often to spawn creepers
 int cowInterval = 3; //How often to spawn cows
-float deltaTime = 0.0f;
 
+//Time variables
+float deltaTime = 0.0f;
 time_t currentTime;
 time_t cowCurrentTime;
 int creeperTimeSpawned; //Time the creepers were last spawned
@@ -30,6 +31,7 @@ void Application::InitVariables(void)
 															 
 	m_pEntityMngr = MyEntityManager::GetInstance(); //Initialize the entity manager
 
+	//Create the player
 	m_pEntityMngr->AddEntity("Minecraft\\Steve.obj", "Steve");
 	vector3 v3Position = vector3(0.0f, 0.0f, 10.0f);
 	matrix4 m4Position = glm::translate(v3Position);
@@ -70,15 +72,14 @@ void Application::InitVariables(void)
 	m_pEntityMngr->SetModelMatrix(m4PositionFloor);
 	m_pEntityMngr->SetMass(1.5);
 
+	//Creating entity player must collide with to win
 	m_pEntityMngr->AddEntity("Minecraft\\Pig.obj", "Finish");
 	vector3 v3PositionFinish = vector3(0.0f, 0.0f, -38.0f);
 	matrix4 m4PositionFinish = glm::translate(v3PositionFinish) * glm::scale(vector3(3.0f));;
 	m_pEntityMngr->SetModelMatrix(m4PositionFinish);
 	m_pEntityMngr->SetMass(1.5);
 
-	m_uOctantLevels = 1;
 	m_pEntityMngr->Update();
-	//m_pRoot = new MyOctant(m_uOctantLevels, 5);
 }
 void Application::Update(void)
 {
@@ -86,36 +87,6 @@ void Application::Update(void)
 
 	cowCurrentTime = time(NULL);
 	currentTime = time(NULL);
-
-	//Tried out a differnt way to implement time
-	//float a = m_pSystem->GetTimeSinceStart(18);
-
-	//if ((int)a % creeperInterval == 0.0f)
-	//{
-
-	//	for (size_t i = 0; i < laneCount; i++)
-	//	{
-	//		if (i % 2 == 0)
-	//		{
-	//			//Create creeper
-	//			m_pEntityMngr->AddEntity("Minecraft\\Creeper.obj", ("Creeper" + std::to_string(mobCount)));
-
-	//			//Assign its row
-	//			m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(mobCount)))->row = i;
-	//			//Assign position and rotation
-	//			vector3 v3PositionCreeper;
-	//			float lanePosition = 5.0f - (i * 6); //z pos of where creeper is in current lane
-
-	//			v3PositionCreeper = vector3(22.0f, 0.0f, lanePosition);
-
-	//			//Apply position
-	//			m_pEntityMngr->SetPosition(v3PositionCreeper);
-	//			mobCount++;
-	//			m_pEntityMngr->UsePhysicsSolver(true);
-	//			//creeperTimeSpawned = currentTime;
-	//		}
-	//	}
-	//}
 
 	float playerZPos = m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Steve"))->GetPosition().z;
 	if (currentTime >= creeperTimeSpawned + creeperInterval)
@@ -142,7 +113,6 @@ void Application::Update(void)
 				m_pEntityMngr->UsePhysicsSolver(true);
 				m_pEntityMngr->SetPosition(v3PositionCreeper);
 				mobCount++;
-				//m_pEntityMngr->UsePhysicsSolver(true);
 				creeperTimeSpawned = currentTime;
 			}
 			else
@@ -159,9 +129,6 @@ void Application::Update(void)
 
 				v3PositionCow = vector3(-22.0f, 0.0f, lanePosition);
 
-				//Trying to make the cows rotate
-				/*matrix4 m4PositionCow = glm::translate(v3PositionCow);
-				m4PositionCow = glm::rotate(m4PositionCow, glm::radians(270.0f), glm::vec3(0.0f, 0.0f, 0.0f));*/
 				cowTimeSpawned = cowCurrentTime;
 
 				//Apply position
@@ -171,7 +138,6 @@ void Application::Update(void)
 				m_pEntityMngr->UsePhysicsSolver(true);
 				m_pEntityMngr->SetPosition(v3PositionCow);
 				mobCount++;
-				//m_pEntityMngr->UsePhysicsSolver(true);
 			}
 		}
 	}
@@ -186,68 +152,25 @@ void Application::Update(void)
 		}
 	}
 
-	////Move each creeper forward
-	//for (size_t i = 0; i < creeperCount; i++)
-	//{
-		//Move each creeper forward
-		for (size_t i = 0; i < mobCount; i++)
+	//Move each creeper forward
+	for (size_t i = 0; i < mobCount; i++)
+	{
+		if (i % 2 == 0)
 		{
-//			//Bounce mobs back into world bounds if knocked out
-//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z < -36.0f)
-//			{
-//				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Creeper" + std::to_string(i));
-//			}
-//
-//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z < -36.0f)
-//			{
-//				m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Cow" + std::to_string(i));
-//			}
-//
-//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().z > 11.0f)
-//			{
-//				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Creeper" + std::to_string(i));
-//			}
-//
-//			if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().z > 11.0f)
-//			{
-//				m_pEntityMngr->ApplyForce(vector3(0, 0, -2.0f), "Cow" + std::to_string(i));
-//			}
+			//Move it left
+			m_pEntityMngr->ApplyForce(vector3(-creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
 
-			if (i % 2 == 0)
-			{
-				//Move it left
-				m_pEntityMngr->ApplyForce(vector3(-creeperSpeed * deltaTime, 0.0f, 0.0f), "Creeper" + std::to_string(i));
-//				//Delete it if it goes too far
-//				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)))->GetPosition().x < -24.0f)
-//				{
-//					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Creeper" + std::to_string(i)));
-//				}
-
-			}
-			else
-			{
-				//Move it right
-				m_pEntityMngr->ApplyForce(vector3(cowSpeed * deltaTime, 0.0f, 0.0f), "Cow" + std::to_string(i));
-//				//Delete it if it goes too far
-//				if (m_pEntityMngr->GetEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)))->GetPosition().x > 24.0f)
-//				{
-//					m_pEntityMngr->RemoveEntity(m_pEntityMngr->GetEntityIndex("Cow" + std::to_string(i)));
-//				}
-			}
 		}
-	//}
+		else
+		{
+			//Move it right
+			m_pEntityMngr->ApplyForce(vector3(cowSpeed * deltaTime, 0.0f, 0.0f), "Cow" + std::to_string(i));
+		}
+	}
+
 
 	//Update the system so it knows how much time has passed since the last call
 	m_pSystem->Update();
-
-	//Rebuild octree
-	fDelta = m_pSystem->GetDeltaTime(0);
-	if (fDelta % 2 == 0)
-	{
-		m_pEntityMngr->ClearDimensionSetAll();
-		//SafeDelete(m_pRoot);
-		//m_pRoot = new MyOctant(m_uOctantLevels, 5);
-	}
 
 	//Is the arcball active?
 	ArcBall();
@@ -265,9 +188,6 @@ void Application::Display(void)
 {
 	// Clear the screen
 	ClearScreen();
-	
-	//display octree
-	//m_pRoot->Display();
 
 	// draw a skybox
 	m_pMeshMngr->AddSkyboxToRenderList();
@@ -289,6 +209,4 @@ void Application::Release(void)
 {
 	//release GUI
 	ShutdownGUI();
-
-	//SafeDelete(m_pRoot);
 }

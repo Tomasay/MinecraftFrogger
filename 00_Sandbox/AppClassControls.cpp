@@ -407,6 +407,7 @@ void Application::ProcessKeyboard(void)
 	if (bMultiplier)
 		fMultiplier = 5.0f;
 
+	//Player Movement
 	if (!m_pEntityMngr->gameWin && !m_pEntityMngr->gameLose)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -430,6 +431,7 @@ void Application::ProcessKeyboard(void)
 		}
 	}
 
+	//Code to keep player within bounds of map
 	if (m_pEntityMngr->GetEntity(0)->GetPosition().z < -36.0f)
 	{
 		m_pEntityMngr->ApplyForce(vector3(0, 0, 2.0f), "Steve");
@@ -449,6 +451,8 @@ void Application::ProcessKeyboard(void)
 	{
 		m_pEntityMngr->ApplyForce(vector3(-2.0f, 0, 0), "Steve");
 	}
+
+	//Code to reset character
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 	{
 		m_pEntityMngr->SetPosition(vector3(0, 0, 10.0f), "Steve");

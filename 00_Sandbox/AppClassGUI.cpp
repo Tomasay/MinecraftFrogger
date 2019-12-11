@@ -122,18 +122,12 @@ void Application::DrawGUI(void)
 	uint nEmptyLines = 20;
 	for (uint i = 0; i < nEmptyLines; ++i)
 		m_pMeshMngr->PrintLine("");//Add a line on top
-	//m_pMeshMngr->Print("						");
-	m_pMeshMngr->PrintLine("Minecraft Frogger", C_YELLOW);
-	//m_pMeshMngr->Print("						");
-	//m_pMeshMngr->Print("Press ");
-	//m_pMeshMngr->Print("SpaceBar", C_BLUE);
-	//m_pMeshMngr->PrintLine(" for sound!");
 
-	//m_pMeshMngr->Print("						");
+	m_pMeshMngr->PrintLine("Minecraft Frogger", C_YELLOW);
+
 	m_pMeshMngr->Print("RenderCalls: ");//Add a line on top
 	m_pMeshMngr->PrintLine(std::to_string(m_uRenderCallCount), C_YELLOW);
 
-	//m_pMeshMngr->Print("						");
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(m_pSystem->GetFPS()), C_RED);
 #pragma endregion
@@ -143,7 +137,7 @@ void Application::DrawGUI(void)
 
 	static ImVec4 v4Color = ImColor(255, 0, 0);
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar;
-	//About
+	//Normal text for GUI
 	{
 		ImGui::SetNextWindowPos(ImVec2(1, 1), ImGuiSetCond_FirstUseEver);
 		ImGui::SetNextWindowSize(ImVec2(315, 42), ImGuiSetCond_FirstUseEver);
